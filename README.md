@@ -1,4 +1,4 @@
-GISAppDev-opiskelijaravintolat
+﻿GISAppDev-opiskelijaravintolat
 ==============================
 
 Kehitettävän palvelun tarkoituksena on tarjota käyttäjälle tiedot häntä lähimpänä sijaitsevista 
@@ -25,3 +25,5 @@ Ravintolat näytetään kartalla Google-maps Javascript API:n avulla. Google Map
 mahdollistaa myös reittien ja käyttäjän sijainnin etsimisen.
 
 Lopullinen applikaatio on html5-sivu, jonka tulisi toimia niin pöytäkoneella kuin mobiiliselaimilla.
+
+---
