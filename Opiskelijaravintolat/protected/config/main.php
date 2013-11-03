@@ -52,7 +52,7 @@ return array(
         'db'=>array(
                 'connectionString'=>'pgsql:host=localhost;port=5432;dbname=testikanta',
                 'username'=>'postgres',
-                'password'=>'dbAdmin',
+                'password'=>'',
 ),
 
 		'errorHandler'=>array(
