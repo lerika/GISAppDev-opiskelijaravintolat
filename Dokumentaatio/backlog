@@ -24,6 +24,7 @@ Ravintoloiden haku tietokannasta
 Ravintolan sijainnin siirtäminen palvelinpuolelta käyttäjäpuolelle
 Käyttäjän sijainnin siirtäminen käyttäjäpuolelta palvelinpuolelle
 Optimointi eri käyttölaitteille
+Käyttäjäkertomukset
 
 
 Scrum 0/1:
@@ -41,3 +42,11 @@ Julkaisupalvelimen valinta
 Applikaation ensimmäinen version julkaisu
 Tietokannan asentaminen
 Kartan näyttämisen toteuttaminen
+
+Scrum 2/3:
+
+Ravintoloiden lisääminen tietokantaan
+Käyttöliittymän suunnittelu
+Käyttäjäkertomukset
+Lähimmän ravintolan etsimisfunktio
+
