@@ -11,7 +11,6 @@ $this->pageTitle=Yii::app()->name;
     $yvar = $array['ykoord'];
 ?>
 </div>
-
 	<div id="mapContainer"></div>
 		<div id="button">
 			<input type="button" value="Etsi reitti" onclick="button()">
@@ -125,3 +124,5 @@ function button()
 		</script>
 
 
+=======
+>>>>>>> 6ab56d70a33c55bea2eb2f18f295d66c11cff73d
