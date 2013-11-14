@@ -35,4 +35,4 @@ INSERT INTO ravintolat(
 	
 INSERT INTO ravintolat(
             nimi, xkoord, ykoord, osoite, kunta)
-	VALUES ('Taffa', 24.832387, 60.185926, 'Otakaari 22', 'Espoo');
+	VALUES ('Täffä', 24.832387, 60.185926, 'Otakaari 22', 'Espoo');
