@@ -1,0 +1,24 @@
+Käyttäjäkertomuksia:
+
+Otaniemeläinen Teemu Teekkari on lähtenyt kyykän MM-kisoihin Tampereelle ja ensimmäisen pelin jälkeen alkaa nälkä kurnia. Teemu ei ole vielä tutustunut TTY:n teekkareihin, joilta voisi kysyä suosituksia opiskelijaravintoloista ja lähimpien ravintoloiden sijaintia. Teemu kaivaa älypuhelimen taskusta ja avaa opiskelijaravintolapalelun kysyäkseen missä lähin ravintola sijaitsee ja miten sinne pääsee. Teemu huomaa, että lähin ravintola on vain 100 metrin päässä, mutta siellä on Teemun inhokkiruokaa: silakkapihvejä. Silakkapihviaterian hinta on kaiken lisäksi melko kallis. Teemu pyytää sovellusta hakemaan seuraavaksi lähimmän ravintolan. Täällä on spagetti bolognesea, joka on Teemun lempiruokaa ja matkaakin on vain 200 metriä ja hintakin sopiva. Teemu suuntaa reittiohjeiden perusteella syömään.
+
+Teemun mielestä Juveneksen spagetti ei ollut aivan yhtä hyvää kuin Täffän, joten Teemu päättä antaa palautetta opiskelijaravintolapalveluun ruoan tasosta. Matkalla seuraavaan kyykkäpeliin Teemu huomaa opiskelijaravintolan, joka on palvelun antamien kahden lähimmän ravintolan välissä, mutta mitä palvelu ei näyttänyt. Teemu päättää lisätä palveluun puuttuvan ravintolan.
+
+Pekka Poliisi on myös nälkäinen ja haluaa tarkistaa Hervannan ruokalistat läppäriltään, koska poliisi-AMK:n tämän päivän ruokalista ei vaikuta houkuttelevalta. Pekka avaa opiskelijaravintolat sovelluksen, jossa ensimmäisenä pekka saa reitin lähimpään, eli poliisi-AMK:n ravintolaan, jossa näyttää vieläpä olevan hirveät jonot. Pekka hakee seuraavaksi lähimmän vaihtoehdon, mutta juveneksen spagetti on saanut huonot arvostelut. Kolmanneksi lähin ravintola on mennyt jo kiinni. Pekka selaa ravintoloita lähemmyysjärjestyksessä, mutta kaikissa Hervannan ravintoloissa on jotain vikaa. Pekka pohtii olisiko kannattavaa lähteä keskustaan bussilla paremman opiskelijaravintolan perään vai mennä suosiolla lähikebabilaan. Pekka päättää syöttää sijaintinsa manuaalisesti palveluun ja laittaa omaksi sijainnikseen bussin pääteaseman keskusaukiolla Tampereen keskustassa. Palvelu näyttää taas lähimpiä ravintoloita Pekalle, mutta koska mieleistä paikkaa ei löydy, Pekka päättää mennä lähikebabilaan.
+
+Käyttäjäkertomuksista poimittuja toimintoja:
+
+Toimii mobiililaitteilla ja tietokoneella
+Näyttää reitin lähimpään ravintolaan omasta sijainnista
+Hakee reitin seuraavaan ravintolaan
+Näyttää kyseisen ravintolan ruokalistat
+Näyttää aukioloajat
+Näyttää hinnan
+Näyttää asiakaspalautteen
+(Näyttää jonotustilanteen)
+Käyttäjä voi lisätä ravintolan
+Käyttäjä voi antaa palautetta ruoasta
+Käyttäjä voi halutessaan antaa oman sijaintinsa
+
+(Pallo joka näyttää oman sijainnin kun liikkuu)
+(Karttanäkymä kaikista ravintoloista)
