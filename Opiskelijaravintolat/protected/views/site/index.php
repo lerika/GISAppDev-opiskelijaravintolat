@@ -122,7 +122,3 @@ function button()
 
 
 		</script>
-
-
-=======
->>>>>>> 6ab56d70a33c55bea2eb2f18f295d66c11cff73d
