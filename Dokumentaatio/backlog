@@ -29,24 +29,28 @@ Käyttäjäkertomukset
 
 Scrum 0/1:
 
-Kehitysympäristön valinta
-Kehitysympäristön asentaminen
-Karttapalvelun valinta
+Kehitysympäristön valinta x 
+Kehitysympäristön asentaminen x 
+Karttapalvelun valinta x 
 
 Scrum 1/2:
 
-Käyttäjän sijainti -funktio
-Reitin haku -funktio
-Geocoding -funktio
-Julkaisupalvelimen valinta
-Applikaation ensimmäinen version julkaisu
-Tietokannan asentaminen
-Kartan näyttämisen toteuttaminen
+Käyttäjän sijainti -funktio x
+Reitin haku -funktio x 
+Julkaisupalvelimen valinta x 
+Geocoding -funktio ->
+Applikaation ensimmäinen version julkaisu x
+Tietokannan asentaminen x 
+Kartan näyttämisen toteuttaminen x
 
 Scrum 2/3:
 
-Ravintoloiden lisääminen tietokantaan
-Käyttöliittymän suunnittelu
-Käyttäjäkertomukset
-Lähimmän ravintolan etsimisfunktio
+Ravintoloiden lisääminen tietokantaan x 
+Käyttöliittymän suunnittelu x 
+Käyttäjäkertomukset x 
+Lähimmän ravintolan etsimisfunktio 
+
+Scrum 3/4
+
+
 
