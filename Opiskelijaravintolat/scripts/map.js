@@ -103,7 +103,7 @@ function button()
 	{
 		return a.etaisyys - b.etaisyys;
 	})
-
+	indeksi = 0;
 	x = parseFloat(ravintolat[lahin[indeksi].id-1]["xkoord"]);
 	y = parseFloat(ravintolat[lahin[indeksi].id-1]["ykoord"]);
 	var waypoints = new nokia.maps.routing.WaypointParameterList();
