@@ -93,16 +93,18 @@ var indeksi = 0;
 
 function button()
 {
-
-    for (var i = 0; i < ravintolat.length; i++)
-		{
-		lista(ravintolat[i]["id"], parseFloat(ravintolat[i]["xkoord"]), parseFloat(ravintolat[i]["ykoord"]));
-		}
-	
-	lahin.sort(function(a,b)
+	if (lahin.length < 1)
 	{
-		return a.etaisyys - b.etaisyys;
-	})
+		for (var i = 0; i < ravintolat.length; i++)
+			{
+			lista(ravintolat[i]["id"], parseFloat(ravintolat[i]["xkoord"]), parseFloat(ravintolat[i]["ykoord"]));
+			}
+		
+		lahin.sort(function(a,b)
+		{
+			return a.etaisyys - b.etaisyys;
+		})
+	}
 	indeksi = 0;
 	x = parseFloat(ravintolat[lahin[indeksi].id-1]["xkoord"]);
 	y = parseFloat(ravintolat[lahin[indeksi].id-1]["ykoord"]);
@@ -115,8 +117,14 @@ function button()
 
 function button2()
 {
+	if (indeksi < 4)
+	{
 	indeksi = indeksi+1;
-	
+	}
+	else
+	{
+	indeksi = 0
+	}
 	x = parseFloat(ravintolat[lahin[indeksi].id-1]["xkoord"]);
 	y = parseFloat(ravintolat[lahin[indeksi].id-1]["ykoord"]);
 	var waypoints = new nokia.maps.routing.WaypointParameterList();
