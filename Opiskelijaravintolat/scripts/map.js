@@ -91,6 +91,8 @@ var modes = [{
 
 function button()
 {
+    var x = parseFloat(ravintolat[0]["xkoord"]);
+    var y = parseFloat(ravintolat[0]["ykoord"]);
     var waypoints = new nokia.maps.routing.WaypointParameterList();
     waypoints.addCoordinate(Location);
     waypoints.addCoordinate(new nokia.maps.geo.Coordinate(y,x));

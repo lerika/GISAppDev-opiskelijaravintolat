@@ -29,16 +29,15 @@ class SiteController extends Controller
 	{
 		// renders the view file 'protected/views/site/index.php'
 		// using the default layout 'protected/views/layouts/main.php'
-        $id = 1;
-        $restcoords = Yii::app()->db->createCommand()
-        ->select('xkoord, ykoord')
+        $rest = Yii::app()->db->createCommand()
+        ->select('id, xkoord, ykoord')
         ->from('ravintolat u')
-        ->where('id=:id', array(':id'=>$id))
-        ->queryRow();
+        ->queryAll();
         
         
+       
 		$this->render('index', array(
-        'restaddr'=>$restcoords,
+        'restaurants'=>$rest,
         ));
 	}
 
