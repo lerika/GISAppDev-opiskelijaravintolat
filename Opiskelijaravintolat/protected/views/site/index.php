@@ -8,6 +8,9 @@ $this->pageTitle=Yii::app()->name;
 <div id="button">
 	<input type="button" value="Etsi reitti" onclick="button()">
 </div>
+<div id="button2">
+	<input type="button" value="Seuraava" onclick="button2()">
+</div>
 <script type="text/javascript" charset="UTF-8" src="http://js.cit.api.here.com/se/2.5.3/jsl.js?with=all"></script>
 <script type="text/javascript">
 

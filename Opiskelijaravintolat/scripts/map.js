@@ -89,12 +89,60 @@ var modes = [{
     trafficMode: "default"
 }];
 
+var indeksi = 0;
+
 function button()
 {
-    var x = parseFloat(ravintolat[0]["xkoord"]);
-    var y = parseFloat(ravintolat[0]["ykoord"]);
-    var waypoints = new nokia.maps.routing.WaypointParameterList();
+
+    for (var i = 0; i < ravintolat.length; i++)
+		{
+		lista(ravintolat[i]["id"], parseFloat(ravintolat[i]["xkoord"]), parseFloat(ravintolat[i]["ykoord"]));
+		}
+	
+	lahin.sort(function(a,b)
+	{
+		return a.etaisyys - b.etaisyys;
+	})
+
+	x = parseFloat(ravintolat[lahin[indeksi].id-1]["xkoord"]);
+	y = parseFloat(ravintolat[lahin[indeksi].id-1]["ykoord"]);
+	var waypoints = new nokia.maps.routing.WaypointParameterList();
+    waypoints.addCoordinate(Location);
+    waypoints.addCoordinate(new nokia.maps.geo.Coordinate(y,x));
+    router.calculateRoute(waypoints, modes);
+
+};
+
+function button2()
+{
+	indeksi = indeksi+1;
+	
+	x = parseFloat(ravintolat[lahin[indeksi].id-1]["xkoord"]);
+	y = parseFloat(ravintolat[lahin[indeksi].id-1]["ykoord"]);
+	var waypoints = new nokia.maps.routing.WaypointParameterList();
+	waypoints.clear();
     waypoints.addCoordinate(Location);
     waypoints.addCoordinate(new nokia.maps.geo.Coordinate(y,x));
     router.calculateRoute(waypoints, modes);
 };
+
+
+var lahin = [];
+
+function lista(id, x, y)
+{
+
+	var Location2 = new nokia.maps.geo.Coordinate(y,x); 
+	var z = Location2.distance(Location);
+
+	lahin.push(new ravintola(id, z));
+	
+
+};
+
+function ravintola(id, etaisyys)
+	{
+		this.id = id;
+		this.etaisyys = etaisyys;
+	}
+

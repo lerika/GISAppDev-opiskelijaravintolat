@@ -20,5 +20,13 @@ body {
 			
 #button {
 	position: absolute;
-    bottom: 0;
+    bottom: 30;
 }
+
+#button2 {
+	position: absolute;
+	bottom: 0;
+	
+	}
+
+	
