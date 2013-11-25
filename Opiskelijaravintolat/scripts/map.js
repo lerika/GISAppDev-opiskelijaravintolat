@@ -62,13 +62,14 @@ if (nokia.maps.positioning.Manager) {
         );
     });
 }
+var mapRoute = 0;
 
 var onRouteCalculated = function (observedRouter, key, value) {
         if (value == "finished") {
             var routes = observedRouter.getRoutes();
             
             //create the default map representation of a route
-            var mapRoute = new nokia.maps.routing.component.RouteResultSet(routes[0]).container;
+            mapRoute = new nokia.maps.routing.component.RouteResultSet(routes[0]).container;
             map.objects.add(mapRoute);
             
             //Zoom to the bounding box of the route
@@ -93,6 +94,10 @@ var indeksi = 0;
 
 function button()
 {
+	if (mapRoute !==0)
+	{
+		mapRoute.destroy();
+	}
 	if (lahin.length < 1)
 	{
 		for (var i = 0; i < ravintolat.length; i++)
@@ -117,6 +122,7 @@ function button()
 
 function button2()
 {
+	mapRoute.destroy();
 	if (indeksi < 4)
 	{
 	indeksi = indeksi+1;
