@@ -10,7 +10,9 @@ var mapContainer = document.getElementById("mapContainer");
 var map = new nokia.maps.map.Display(mapContainer, {
     // Alkusijanti ja zoom level
     center: [60.1808, 24.9375],
-    zoomLevel: 10,
+    minZoomLevel: 9,
+	maxZoomLevel: 17,
+	zoomLevel: 9,
     components: [
         // Zoom ja pan tools
         new nokia.maps.map.component.Behavior()
@@ -31,12 +33,13 @@ if (nokia.maps.positioning.Manager) {
          
             function (position) {
                 var coords = position.coords, // koordinaatit
-                    Marker = new nokia.maps.map.StandardMarker(coords), //marker
-                    accuracyCircle = new nokia.maps.map.Circle(coords, coords.accuracy); //tarkkuus
-                
-                
-                map.objects.addAll([accuracyCircle, Marker]);
-                Location = position.coords;
+                    alkusijainti = new nokia.maps.map.StandardMarker(coords); //marker
+					
+					map.objects.add(alkusijainti);
+					Location = position.coords;
+					map.setCenter(coords);
+					map.setZoomLevel(14);
+					
 
             }, 
             // virheilmoitukset
@@ -67,7 +70,7 @@ var onRouteCalculated = function (observedRouter, key, value) {
        
             map.zoomTo(mapRoute.getBoundingBox(), false, "default");
         } else if (value == "failed") {
-            alert("The routing request failed.");
+            alert("Reitin haku epäonnistui. Yritä uudelleen");
         }
     };
 
