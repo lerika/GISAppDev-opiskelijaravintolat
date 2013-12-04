@@ -1,62 +1,55 @@
 
 nokia.Settings.set("app_id", "pDOGtkxwxdAkuQCiL7e4"); 
 nokia.Settings.set("app_code", "cyPj3vIrgjsZy9sgWqga-g");
-// Use staging environment (remove the line for production environment)
+// App-tiedot
 var Location = new nokia.maps.geo.Coordinate(0, 0);
 
-// Get the DOM node to which we will append the map
+// DOM node kartalle
 var mapContainer = document.getElementById("mapContainer");
-// Create a map inside the map container DOM node
+// Kartan luonti
 var map = new nokia.maps.map.Display(mapContainer, {
-    // Initial center and zoom level of the map
+    // Alkusijanti ja zoom level
     center: [60.1808, 24.9375],
     zoomLevel: 10,
     components: [
-        // We add the behavior component to allow panning / zooming of the map
+        // Zoom ja pan tools
         new nokia.maps.map.component.Behavior()
     ]
 });
-
+// Reitinhaku
 var router = new nokia.maps.routing.Manager();
 
 
-/* The positioning manager is only available if the browser used supports
-* W3C geolocation API
-*/
+//Käyttäjän sijainti
 if (nokia.maps.positioning.Manager) {
     var positioning = new nokia.maps.positioning.Manager();
-    // Trigger the load of data, after the map emmits the "displayready" event
+    // Alkaa kun kartta ladattu
     map.addListener("displayready", function () {
-        // Gets the current position, if available the first given callback function is executed else the second
+        // Hakee sijainnin
         positioning.getCurrentPosition(
-            // If a position is provided by W3C geolocation API of the browser
+         
             function (position) {
-                var coords = position.coords, // we retrieve the longitude/latitude from position
-                    marker = new nokia.maps.map.StandardMarker(coords), // creates a marker
-                    /* Create a circle map object  on the  geographical coordinates of
-                    * provided position with a radius in meters of the accuracy of the position
-                    */
-                    accuracyCircle = new nokia.maps.map.Circle(coords, coords.accuracy);
+                var coords = position.coords, // koordinaatit
+                    marker = new nokia.maps.map.StandardMarker(coords), //marker
+                    accuracyCircle = new nokia.maps.map.Circle(coords, coords.accuracy); //tarkkuus
                 
-                // Add the circle and marker to the map's object collection so they will be rendered onto the map.
+                
                 map.objects.addAll([accuracyCircle, marker]);
                 Location = position.coords;
-                /* This method zooms the map to ensure that the bounding box calculated from the size of the circle
-                * shape is visible in its entirety in map's viewport. 
-                */
+          
                 map.zoomTo(accuracyCircle.getBoundingBox(), false, "default");
             }, 
-            // Something went wrong we wee unable to retrieve the GPS location
+            // virheilmoitukset
             function (error) {
                 var errorMsg = "Location could not be determined: ";
                 
-                // We determine what caused the error and generate error message
+                
                 if (error.code == 1) errorMsg += "PERMISSION_DENIED";
                 else if (error.code == 2) errorMsg += "POSITION_UNAVAILABLE";
                 else if (error.code == 3) errorMsg += "TIMEOUT";
                 else errorMsg += "UNKNOWN_ERROR";
                     
-                    // Throw an alert with error message
+                
                     alert(errorMsg);
             }
         );
@@ -68,11 +61,10 @@ var onRouteCalculated = function (observedRouter, key, value) {
         if (value == "finished") {
             var routes = observedRouter.getRoutes();
             
-            //create the default map representation of a route
+            
             mapRoute = new nokia.maps.routing.component.RouteResultSet(routes[0]).container;
             map.objects.add(mapRoute);
-            
-            //Zoom to the bounding box of the route
+       
             map.zoomTo(mapRoute.getBoundingBox(), false, "default");
         } else if (value == "failed") {
             alert("The routing request failed.");
@@ -92,36 +84,59 @@ var modes = [{
 
 var indeksi = 0;
 
-function button()
+function button() //etsii lähimmän ravintolan
 {
+	var startpoint;
+	if (document.forms["userlocation"]["inputbox"].value=="")
+	{
+		startpoint = Location;
+		lahin = [];
+	}
+	else
+	{
+		startpoint = userLocation;
+		lahin = [];
+	}
+	
 	if (mapRoute !==0)
 	{
 		mapRoute.destroy();
 	}
-	if (lahin.length < 1)
-	{
-		for (var i = 0; i < ravintolat.length; i++)
-			{
-			lista(ravintolat[i]["id"], parseFloat(ravintolat[i]["xkoord"]), parseFloat(ravintolat[i]["ykoord"]));
-			}
-		
-		lahin.sort(function(a,b)
+	
+	
+	for (var i = 0; i < ravintolat.length; i++)
 		{
-			return a.etaisyys - b.etaisyys;
-		})
-	}
+		lista(ravintolat[i]["id"], parseFloat(ravintolat[i]["xkoord"]), parseFloat(ravintolat[i]["ykoord"]));
+		}
+	
+	lahin.sort(function(a,b)
+	{
+		return a.etaisyys - b.etaisyys;
+	})
+	
 	indeksi = 0;
 	x = parseFloat(ravintolat[lahin[indeksi].id-1]["xkoord"]);
 	y = parseFloat(ravintolat[lahin[indeksi].id-1]["ykoord"]);
 	var waypoints = new nokia.maps.routing.WaypointParameterList();
-    waypoints.addCoordinate(Location);
+    waypoints.addCoordinate(startpoint);
     waypoints.addCoordinate(new nokia.maps.geo.Coordinate(y,x));
     router.calculateRoute(waypoints, modes);
 
 };
 
-function button2()
+function button2() //etsii seuraavaksi lähimmän ravintolan
 {
+	var startpoint;
+	if (document.forms["userlocation"]["inputbox"].value=="")
+	{
+		startpoint = Location;
+	}
+	else
+	{
+		startpoint = userLocation;
+	}
+	
+	
 	mapRoute.destroy();
 	if (indeksi < 4)
 	{
@@ -135,19 +150,53 @@ function button2()
 	y = parseFloat(ravintolat[lahin[indeksi].id-1]["ykoord"]);
 	var waypoints = new nokia.maps.routing.WaypointParameterList();
 	waypoints.clear();
-    waypoints.addCoordinate(Location);
+    waypoints.addCoordinate(startpoint);
     waypoints.addCoordinate(new nokia.maps.geo.Coordinate(y,x));
     router.calculateRoute(waypoints, modes);
 };
 
+var userLocation;
+
+function button3()
+{
+	
+	map.objects.clear();
+	if (document.forms["userlocation"]["inputbox"].value!=="")
+	{
+		
+		getCoordinates(document.forms["userlocation"]["inputbox"].value);
+		userLocation = new nokia.maps.geo.Coordinate(coordinates[0], coordinates[1])
+		map.setCenter(userLocation);
+		var Marker = new nokia.maps.map.StandardMarker(map.center);
+		map.setZoomLevel(14);
+		map.objects.add(Marker);
+	}
+	else
+	{
+		map.setCenter(Location);
+		var Marker = new nokia.maps.map.StandardMarker(map.center);
+		map.setZoomLevel(14);
+		map.objects.add(Marker);
+	}
+		
+	
+};
 
 var lahin = [];
 
-function lista(id, x, y)
+function lista(id, x, y) //laskee etäisyydet ravintoloihin
 {
-
+	var startpoint;
+	if (document.forms["userlocation"]["inputbox"].value=="")
+	{
+		startpoint = Location;
+	}
+	else
+	{
+		startpoint = userLocation;
+	}
 	var Location2 = new nokia.maps.geo.Coordinate(y,x); 
-	var z = Location2.distance(Location);
+	var z = Location2.distance(startpoint);
 
 	lahin.push(new ravintola(id, z));
 	
@@ -160,3 +209,30 @@ function ravintola(id, etaisyys)
 		this.etaisyys = etaisyys;
 	}
 
+var coordinates = [];
+	
+function getCoordinates(address) 
+	{
+		
+		var searchCenter = new nokia.maps.geo.Coordinate(60.1808, 24.9375),
+			searchManager = nokia.places.search.manager,
+			resultSet;
+		// Function for receiving search results from places search and process them
+		var processResults = function (data, requestStatus) {
+			
+			if (requestStatus == "OK") {
+				coordinates = [data.location.position.latitude, data.location.position.longitude];
+				
+				
+			} else {
+				alert("The search request failed");
+			}
+		return coordinates;
+		};
+		searchManager.geoCode({
+				searchTerm: address,
+				onComplete: processResults
+				});
+		alert("Ei toimi ilman tätä ?D"); //jos tän poistaa niin hajoo, en tajua
+		return coordinates;
+	};
