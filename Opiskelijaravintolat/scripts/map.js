@@ -20,6 +20,7 @@ var map = new nokia.maps.map.Display(mapContainer, {
 var router = new nokia.maps.routing.Manager();
 
 
+
 //Käyttäjän sijainti
 if (nokia.maps.positioning.Manager) {
     var positioning = new nokia.maps.positioning.Manager();
@@ -81,6 +82,22 @@ var modes = [{
     options: "avoidTollroad",
     trafficMode: "default"
 }];
+
+
+//Markkereiden luonti -funktio
+function markers()
+{
+	for (var i = 0; i < ravintolat.length; i++)
+		{
+		x = parseFloat(ravintolat[i]["xkoord"]);
+		y = parseFloat(ravintolat[i]["ykoord"]);
+
+		var standardMarker = new nokia.maps.map.StandardMarker([y,x]);
+		map.objects.add(standardMarker);
+		}
+};
+//markkerit luodaan
+markers();
 
 var indeksi = 0;
 
@@ -234,5 +251,7 @@ function getCoordinates(address)
 				onComplete: processResults
 				});
 		alert("Ei toimi ilman tätä ?D"); //jos tän poistaa niin hajoo, en tajua
+		//luodaan markkerit uudestaan hävitettyjen tilalle
+		markers();
 		return coordinates;
 	};
