@@ -31,14 +31,13 @@ if (nokia.maps.positioning.Manager) {
          
             function (position) {
                 var coords = position.coords, // koordinaatit
-                    marker = new nokia.maps.map.StandardMarker(coords), //marker
+                    Marker = new nokia.maps.map.StandardMarker(coords), //marker
                     accuracyCircle = new nokia.maps.map.Circle(coords, coords.accuracy); //tarkkuus
                 
                 
-                map.objects.addAll([accuracyCircle, marker]);
+                map.objects.addAll([accuracyCircle, Marker]);
                 Location = position.coords;
-          
-                map.zoomTo(accuracyCircle.getBoundingBox(), false, "default");
+
             }, 
             // virheilmoitukset
             function (error) {
@@ -92,8 +91,9 @@ function markers()
 		x = parseFloat(ravintolat[i]["xkoord"]);
 		y = parseFloat(ravintolat[i]["ykoord"]);
 
-		var standardMarker = new nokia.maps.map.StandardMarker([y,x]);
-		map.objects.add(standardMarker);
+		var ravintolamarker = new nokia.maps.map.StandardMarker([y,x]);
+		ravintolamarker.brush.color = "#0000FF";
+		map.objects.add(ravintolamarker);
 		}
 };
 //markkerit luodaan
@@ -178,20 +178,19 @@ function button3()
 {
 	
 	map.objects.clear();
+	markers();
+	//luodaan  ravintolat markkerit uudestaan hävitettyjen tilalle
 	if (document.forms["userlocation"]["inputbox"].value!=="")
 	{
 		
 		getCoordinates(document.forms["userlocation"]["inputbox"].value);
-		userLocation = new nokia.maps.geo.Coordinate(coordinates[0], coordinates[1])
-		map.setCenter(userLocation);
-		var Marker = new nokia.maps.map.StandardMarker(map.center);
-		map.setZoomLevel(14);
-		map.objects.add(Marker);
+
 	}
 	else
 	{
 		map.setCenter(Location);
 		var Marker = new nokia.maps.map.StandardMarker(map.center);
+		//Marker.brush.color = "#FF0000";
 		map.setZoomLevel(14);
 		map.objects.add(Marker);
 	}
@@ -234,11 +233,17 @@ function getCoordinates(address)
 		var searchCenter = new nokia.maps.geo.Coordinate(60.1808, 24.9375),
 			searchManager = nokia.places.search.manager,
 			resultSet;
-		// Function for receiving search results from places search and process them
+		// callback funktio
 		var processResults = function (data, requestStatus) {
 			
 			if (requestStatus == "OK") {
-				coordinates = [data.location.position.latitude, data.location.position.longitude];
+			coordinates = [data.location.position.latitude, data.location.position.longitude];
+			userLocation = new nokia.maps.geo.Coordinate(coordinates[0], coordinates[1])
+			map.setCenter(userLocation);
+			var SijaintiMarker = new nokia.maps.map.Marker(map.center);
+			
+			map.setZoomLevel(14);
+			map.objects.add(SijaintiMarker);
 				
 				
 			} else {
@@ -250,8 +255,8 @@ function getCoordinates(address)
 				searchTerm: address,
 				onComplete: processResults
 				});
-		alert("Ei toimi ilman tätä ?D"); //jos tän poistaa niin hajoo, en tajua
-		//luodaan markkerit uudestaan hävitettyjen tilalle
-		markers();
-		return coordinates;
+		
+		
+		
+		
 	};
