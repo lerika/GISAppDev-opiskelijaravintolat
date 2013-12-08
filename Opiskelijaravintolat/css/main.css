@@ -7,31 +7,88 @@ body {
 	padding: 0;
 	overflow: hidden;
 	width: 100%;
-	height: 75%;
+	height: 90%;
+	background-color: yellow;
 
 }
 			
 #mapContainer {
 	width: 100%;
-	height: 75%;
+	height: 91%;
 	left: 0;
 	top: 0;
 	position: absolute;
+	z-index: -1;
+	
 }
 			
 #button {
 	position: absolute;
-    bottom: 120;
+	width: 50%;
+	height:9.5%;
+	left: 0;
+	bottom:0;
+	
+
+}
+#nappilähin {
+	width:100%;
+	padding:1.5%;
+	border:1px solid gray;
+	font-family:"Verdana";
+	font-size:89%;
+	background-color:rgb(213,170,198);
 }
 
 #button2 {
 	position: absolute;
-	bottom: 90;
-	
+	width: 50%;
+	height:9.5%;
+	right: 0;
+	bottom:0;
 	}
-
+	
+#nappiseuraava {
+	width:100%;
+	padding:1.5%;
+	border:1px solid gray;
+	font-family:"Verdana";
+	font-size:89%;
+	background-color:rgb(213,170,198);
+	}
+	
 #form {
 	position: absolute;
-	bottom: 0;
+	width: 50%;
+	height:5%;
+	left: 0;
+	bottom:0;
+}
+
+#locationform {
+	width:100%;
+	padding:1.5%;
+	border:1px solid gray;
+	font-family:"Verdana";
+	font-size:89%;
+	background-color:rgb(228,208,234);
+}
+
+
+#button3 {
+	position: absolute;
+	width: 50%;
+	height:5%;
+	right: 0;
+	bottom:0;
+}
+
+#nappinayta {
+	width:100%;
+	padding:1.5%;
+	border:1px solid gray;
+	font-family:"Verdana";
+	font-size:89%;
+	background-color:rgb(213,170,198);
 }
 	
