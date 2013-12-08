@@ -21,6 +21,7 @@ var map = new nokia.maps.map.Display(mapContainer, {
 // Reitinhaku
 var router = new nokia.maps.routing.Manager();
 
+document.getElementById("nappiseuraava").disabled = true;
 
 
 //Käyttäjän sijainti
@@ -38,7 +39,7 @@ if (nokia.maps.positioning.Manager) {
 					map.objects.add(alkusijainti);
 					Location = position.coords;
 					map.setCenter(coords);
-					map.setZoomLevel(14);
+					map.setZoomLevel(15);
 					
 
             }, 
@@ -58,12 +59,12 @@ if (nokia.maps.positioning.Manager) {
         );
     });
 }
-var mapRoute = 0;
+var mapRoute = 0; //reittimuuttuja jonka avulla muut funktiot voi tarkistaa onko olemassa olevia reittejä
 
 var onRouteCalculated = function (observedRouter, key, value) {
         if (value == "finished") {
             var routes = observedRouter.getRoutes();
-            
+            //haetaan reitti
             
             mapRoute = new nokia.maps.routing.component.RouteResultSet(routes[0]).container;
             map.objects.add(mapRoute);
@@ -76,7 +77,7 @@ var onRouteCalculated = function (observedRouter, key, value) {
 
 router.addObserver("state", onRouteCalculated);
 
-
+//reitin modet
 
 var modes = [{
     type: "shortest", 
@@ -101,12 +102,16 @@ function markers()
 };
 //markkerit luodaan
 markers();
-
+//tiedetään mihin lahin taulun ravintolaista haetaan reitti
 var indeksi = 0;
+
+
 
 function button() //etsii lähimmän ravintolan
 {
+	
 	var startpoint;
+	//tarkistetaan käytetäänkö geolocation vai käyttäjän antamaa sijaintia
 	if (document.forms["userlocation"]["inputbox"].value=="")
 	{
 		startpoint = Location;
@@ -117,23 +122,23 @@ function button() //etsii lähimmän ravintolan
 		startpoint = userLocation;
 		lahin = [];
 	}
-	
+	//poistetaan vanha reitti jos sellainen on
 	if (mapRoute !==0)
 	{
 		mapRoute.destroy();
 	}
 	
-	
+	//luodaan taulu jossa etäisyydet ravintoloihin
 	for (var i = 0; i < ravintolat.length; i++)
 		{
 		lista(ravintolat[i]["id"], parseFloat(ravintolat[i]["xkoord"]), parseFloat(ravintolat[i]["ykoord"]));
 		}
-	
+	//järjestetään taulu että lähin on ensimmäinen
 	lahin.sort(function(a,b)
 	{
 		return a.etaisyys - b.etaisyys;
 	})
-	
+	//valitaan lähin ravintola
 	indeksi = 0;
 	x = parseFloat(ravintolat[lahin[indeksi].id-1]["xkoord"]);
 	y = parseFloat(ravintolat[lahin[indeksi].id-1]["ykoord"]);
@@ -141,12 +146,13 @@ function button() //etsii lähimmän ravintolan
     waypoints.addCoordinate(startpoint);
     waypoints.addCoordinate(new nokia.maps.geo.Coordinate(y,x));
     router.calculateRoute(waypoints, modes);
-
+	document.getElementById("nappiseuraava").disabled = false;
 };
 
 function button2() //etsii seuraavaksi lähimmän ravintolan
 {
 	var startpoint;
+	//tarkistetaan käytetäänkö geolocation vai käyttäjän antamaa sijaintia
 	if (document.forms["userlocation"]["inputbox"].value=="")
 	{
 		startpoint = Location;
@@ -156,8 +162,10 @@ function button2() //etsii seuraavaksi lähimmän ravintolan
 		startpoint = userLocation;
 	}
 	
+	//poistetaan vanha reitti
 	
 	mapRoute.destroy();
+	//valitaan seuraavana taulussa oleva ravintola, käydään 5 läpi ja palataan ensimmmäiseen
 	if (indeksi < 4)
 	{
 	indeksi = indeksi+1;
@@ -193,14 +201,14 @@ function button3()
 	{
 		map.setCenter(Location);
 		var Marker = new nokia.maps.map.StandardMarker(map.center);
-		//Marker.brush.color = "#FF0000";
-		map.setZoomLevel(14);
+		
+		map.setZoomLevel(15);
 		map.objects.add(Marker);
 	}
-		
+	document.getElementById("nappiseuraava").disabled = true;	
 	
 };
-
+//taulu etäisyyksille ravintoloihin
 var lahin = [];
 
 function lista(id, x, y) //laskee etäisyydet ravintoloihin
@@ -221,13 +229,13 @@ function lista(id, x, y) //laskee etäisyydet ravintoloihin
 	
 
 };
-
+//ravintola objekti
 function ravintola(id, etaisyys)
 	{
 		this.id = id;
 		this.etaisyys = etaisyys;
 	}
-
+//käyttäjän antaman paikan koordinaatit
 var coordinates = [];
 	
 function getCoordinates(address) 
@@ -236,7 +244,7 @@ function getCoordinates(address)
 		var searchCenter = new nokia.maps.geo.Coordinate(60.1808, 24.9375),
 			searchManager = nokia.places.search.manager,
 			resultSet;
-		// callback funktio
+		// callback funktio, ei saa koordinaatteja ulos ennenku kutsufunktio suoritettu loppuun, joten tehdään toiminnot täällä
 		var processResults = function (data, requestStatus) {
 			
 			if (requestStatus == "OK") {
@@ -245,14 +253,14 @@ function getCoordinates(address)
 			map.setCenter(userLocation);
 			var SijaintiMarker = new nokia.maps.map.Marker(map.center);
 			
-			map.setZoomLevel(14);
+			map.setZoomLevel(15);
 			map.objects.add(SijaintiMarker);
 				
 				
 			} else {
 				alert("The search request failed");
 			}
-		return coordinates;
+		
 		};
 		searchManager.geoCode({
 				searchTerm: address,
