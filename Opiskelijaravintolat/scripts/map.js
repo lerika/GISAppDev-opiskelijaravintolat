@@ -172,7 +172,7 @@ function button2() //etsii seuraavaksi lähimmän ravintolan
 	}
 	else
 	{
-	indeksi = 0
+	indeksi = 0;
 	}
 	x = parseFloat(ravintolat[lahin[indeksi].id-1]["xkoord"]);
 	y = parseFloat(ravintolat[lahin[indeksi].id-1]["ykoord"]);
@@ -249,7 +249,7 @@ function getCoordinates(address)
 			
 			if (requestStatus == "OK") {
 			coordinates = [data.location.position.latitude, data.location.position.longitude];
-			userLocation = new nokia.maps.geo.Coordinate(coordinates[0], coordinates[1])
+			userLocation = new nokia.maps.geo.Coordinate(coordinates[0], coordinates[1]);
 			map.setCenter(userLocation);
 			var SijaintiMarker = new nokia.maps.map.Marker(map.center);
 			

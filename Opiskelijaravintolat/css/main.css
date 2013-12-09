@@ -8,7 +8,7 @@ body {
 	overflow: hidden;
 	width: 100%;
 	height: 90%;
-	background-color: #FFFF99;
+	background-color: White;
 
 }
 			
@@ -18,7 +18,7 @@ body {
 	left: 0;
 	top: 0;
 	position: absolute;
-	z-index: -1;
+	
 	
 }
 
@@ -86,3 +86,4 @@ body {
     margin: 0;
     border: 1px solid #4C1A1A;
 }
+
