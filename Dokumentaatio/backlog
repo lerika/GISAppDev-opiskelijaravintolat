@@ -54,7 +54,7 @@ Scrum 3/4
 
 Käyttöliittymän toteuttaminen x
 Ravintola-markerit x
-Tietokannasta spatiaalinen
+Tietokannasta spatiaalinen x
 -> Geocoding -funktio x
 
 Scrum 4/5
@@ -63,3 +63,4 @@ Ravintoloiden ruokalistojen näyttäminen
 Ravintoloiden aikataulujen näyttäminen
 Käyttäjäpalautteen suunnittelu
 Koekäytön suunnittelu
+Palvelun vienti lopulliselle julkaisupalvelimelle

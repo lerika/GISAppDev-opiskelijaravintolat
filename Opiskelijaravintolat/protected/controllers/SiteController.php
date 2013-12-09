@@ -30,7 +30,7 @@ class SiteController extends Controller
 		// renders the view file 'protected/views/site/index.php'
 		// using the default layout 'protected/views/layouts/main.php'
         $rest = Yii::app()->db->createCommand()
-        ->select('id, xkoord, ykoord')
+        ->select('id, st_x(geometria) as xkoord, st_y(geometria) as ykoord')
         ->from('ravintolat u')
         ->queryAll();
         
