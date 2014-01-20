@@ -12,6 +12,7 @@ CREATE TABLE ravintolat
   osoite character varying(255) NOT NULL,
   kunta character varying(255) NOT NULL,
   geometria geometry(Point,4326),
+  webosoite character varying(255) NOT NULL,
   CONSTRAINT ravintolat_pkey PRIMARY KEY (id)
 )
 WITH (
