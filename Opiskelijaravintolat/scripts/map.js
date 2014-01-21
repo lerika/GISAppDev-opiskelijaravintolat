@@ -147,6 +147,10 @@ function button() //etsii lähimmän ravintolan
     waypoints.addCoordinate(new nokia.maps.geo.Coordinate(y,x));
     router.calculateRoute(waypoints, modes);
 	document.getElementById("nappiseuraava").disabled = false;
+    
+    var id1 = lahin[indeksi].id;
+    getInfo(id1);
+    
 };
 
 function button2() //etsii seuraavaksi lähimmän ravintolan
@@ -181,6 +185,10 @@ function button2() //etsii seuraavaksi lähimmän ravintolan
     waypoints.addCoordinate(startpoint);
     waypoints.addCoordinate(new nokia.maps.geo.Coordinate(y,x));
     router.calculateRoute(waypoints, modes);
+    
+    var id1 = lahin[indeksi].id;
+    getInfo(id1);
+    
 };
 
 var userLocation;
@@ -271,3 +279,19 @@ function getCoordinates(address)
 		
 		
 	};
+    
+function getInfo(id1) {
+// fetches restaurants name, address and website from the database
+    $.ajax({
+      url: "index.php/site/getdata/" + id1,
+      contentType: "application/json; charset=utf-8",
+      dataType: "json",
+      success: function(response, status){
+           alert(response["nimi"] + "\n" + response["osoite"]);
+          },
+      error: function error(jqXHR, textStatus, errorThrown) {
+            alert("Ravintolan tietojen haku epäonnistui.");
+      }
+    });
+
+}
