@@ -6,9 +6,9 @@
  * The followings are the available columns in table 'ravintolat':
  * @property integer $id
  * @property string $nimi
- * @property string $xkoord
- * @property string $ykoord
  * @property string $osoite
+ * @property string $kunta
+ * @property string $geometria
  */
 class Ravintolat extends CActiveRecord
 {
@@ -28,12 +28,12 @@ class Ravintolat extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('nimi, osoite', 'required'),
-			array('nimi, osoite', 'length', 'max'=>255),
-			array('xkoord, ykoord', 'length', 'max'=>8),
+			array('nimi, osoite, kunta', 'required'),
+			array('nimi, osoite, kunta', 'length', 'max'=>255),
+			array('geometria', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, nimi, xkoord, ykoord, osoite', 'safe', 'on'=>'search'),
+			array('id, nimi, osoite, kunta, geometria', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -56,9 +56,9 @@ class Ravintolat extends CActiveRecord
 		return array(
 			'id' => 'ID',
 			'nimi' => 'Nimi',
-			'xkoord' => 'Xkoord',
-			'ykoord' => 'Ykoord',
 			'osoite' => 'Osoite',
+			'kunta' => 'Kunta',
+			'geometria' => 'Geometria',
 		);
 	}
 
@@ -82,9 +82,9 @@ class Ravintolat extends CActiveRecord
 
 		$criteria->compare('id',$this->id);
 		$criteria->compare('nimi',$this->nimi,true);
-		$criteria->compare('xkoord',$this->xkoord,true);
-		$criteria->compare('ykoord',$this->ykoord,true);
 		$criteria->compare('osoite',$this->osoite,true);
+		$criteria->compare('kunta',$this->kunta,true);
+		$criteria->compare('geometria',$this->geometria,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

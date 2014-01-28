@@ -40,6 +40,22 @@ class SiteController extends Controller
         'restaurants'=>$rest,
         ));
 	}
+    
+    public function actionGetdata($id)
+	{
+        
+        $restinfo = Yii::app()->db->createCommand()
+        ->select('nimi, osoite')
+        ->from('ravintolat u')
+        ->where('id=:id', array(':id'=>$id))
+        ->queryRow();
+                
+        header('Content-type: application/json');
+
+        echo json_encode($restinfo);
+
+        Yii::app()->end();
+	}
 
 	/**
 	 * This is the action to handle external exceptions.

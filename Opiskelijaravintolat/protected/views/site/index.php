@@ -3,24 +3,30 @@
 
 $this->pageTitle=Yii::app()->name;
 ?>
-
-<div id="mapContainer"></div>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/>
+<div id="mapContainer">
+</div>
 <table id="btntbl">
-<tr>
-<td>
-	<input type="button" value="Etsi lähin" onclick="button()" id="nappilähin"/>
-</td><td>
-	<input type="button" value="Seuraava" onclick="button2()" id="nappiseuraava"/>
-</td>
-</tr><tr>
-<form name="userlocation" action="" method="get">
-<td>
-<input type="text" name="pac-input" id="pac-input" placeholder="Oma sijainti" value=""/>
-</td><td>
-<input type="button" value="Näytä sijainti" onclick="button3()" id="nappinayta"/> 
-</td>
-</form>
-</tr>
+
+	<tr>
+		<td>
+			<input type="button" value="Etsi lähin" onclick="button()" id="nappilahin"/>
+		</td>
+		<td>
+			<input type="button" value="Seuraava" onclick="button2()" id="nappiseuraava"/>
+		</td>
+	</tr>
+	<tr>
+		<form name="userlocation" action="" onsubmit="button3(); return false" method="get">
+		<td>
+			<input type="text" name="pac-input" id="pac-input" placeholder="Oma sijainti" value=""/>
+		</td>
+		<td>
+			<input type="button" value="Näytä sijainti" onclick="button3()" id="nappinayta"/> 
+		</td>
+		</form>
+	</tr>
+
 </table>
 <script type="text/javascript" charset="UTF-8" src="http://js.cit.api.here.com/se/2.5.3/jsl.js?with=all"></script>
 <script type="text/javascript">
