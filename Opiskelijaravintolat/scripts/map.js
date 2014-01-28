@@ -15,6 +15,7 @@ var map = new nokia.maps.map.Display(mapContainer, {
 	zoomLevel: 9,
     components: [
         // Zoom ja pan tools
+		new nokia.maps.map.component.ZoomBar(),
         new nokia.maps.map.component.Behavior()
     ]
 });
@@ -112,7 +113,7 @@ function button() //etsii lähimmän ravintolan
 	
 	var startpoint;
 	//tarkistetaan käytetäänkö geolocation vai käyttäjän antamaa sijaintia
-	if (document.forms["userlocation"]["inputbox"].value=="")
+	if (document.getElementById("pac-input").value=="")
 	{
 		startpoint = Location;
 		lahin = [];
@@ -153,7 +154,7 @@ function button2() //etsii seuraavaksi lähimmän ravintolan
 {
 	var startpoint;
 	//tarkistetaan käytetäänkö geolocation vai käyttäjän antamaa sijaintia
-	if (document.forms["userlocation"]["inputbox"].value=="")
+	if (document.getElementById("pac-input").value=="")
 	{
 		startpoint = Location;
 	}
@@ -191,10 +192,10 @@ function button3()
 	map.objects.clear();
 	markers();
 	//luodaan  ravintolat markkerit uudestaan hävitettyjen tilalle
-	if (document.forms["userlocation"]["inputbox"].value!=="")
+	if (document.getElementById("pac-input").value!=="")
 	{
 		
-		getCoordinates(document.forms["userlocation"]["inputbox"].value);
+		getCoordinates(document.getElementById("pac-input").value);
 
 	}
 	else
@@ -214,7 +215,7 @@ var lahin = [];
 function lista(id, x, y) //laskee etäisyydet ravintoloihin
 {
 	var startpoint;
-	if (document.forms["userlocation"]["inputbox"].value=="")
+	if (document.getElementById("pac-input").value=="")
 	{
 		startpoint = Location;
 	}
@@ -238,36 +239,21 @@ function ravintola(id, etaisyys)
 //käyttäjän antaman paikan koordinaatit
 var coordinates = [];
 	
-function getCoordinates(address) 
+var input = /** @type {HTMLInputElement} */(
+      document.getElementById('pac-input'));
+
+var autocomplete = new google.maps.places.Autocomplete(input);
+  autocomplete.bindTo('bounds', map);
+  
+	
+function getCoordinates(location) 
 	{
-		
-		var searchCenter = new nokia.maps.geo.Coordinate(60.1808, 24.9375),
-			searchManager = nokia.places.search.manager,
-			resultSet;
-		// callback funktio, ei saa koordinaatteja ulos ennenku kutsufunktio suoritettu loppuun, joten tehdään toiminnot täällä
-		var processResults = function (data, requestStatus) {
-			
-			if (requestStatus == "OK") {
-			coordinates = [data.location.position.latitude, data.location.position.longitude];
+			var place = autocomplete.getPlace();
+			coordinates = [place.geometry.location.lat(), place.geometry.location.lng()];
 			userLocation = new nokia.maps.geo.Coordinate(coordinates[0], coordinates[1]);
 			map.setCenter(userLocation);
 			var SijaintiMarker = new nokia.maps.map.Marker(map.center);
-			
 			map.setZoomLevel(15);
 			map.objects.add(SijaintiMarker);
-				
-				
-			} else {
-				alert("The search request failed");
-			}
-		
-		};
-		searchManager.geoCode({
-				searchTerm: address,
-				onComplete: processResults
-				});
-		
-		
-		
 		
 	};

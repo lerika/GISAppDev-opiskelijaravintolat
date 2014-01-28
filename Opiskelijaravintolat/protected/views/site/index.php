@@ -15,7 +15,7 @@ $this->pageTitle=Yii::app()->name;
 </tr><tr>
 <form name="userlocation" action="" method="get">
 <td>
-<input type="text" name="inputbox" id="locationform" placeholder="Oma sijainti" value=""/>
+<input type="text" name="pac-input" id="pac-input" placeholder="Oma sijainti" value=""/>
 </td><td>
 <input type="button" value="Näytä sijainti" onclick="button3()" id="nappinayta"/> 
 </td>
