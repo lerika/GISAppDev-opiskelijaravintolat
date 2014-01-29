@@ -6,6 +6,9 @@ var Location = new nokia.maps.geo.Coordinate(0, 0);
 
 // DOM node kartalle
 var mapContainer = document.getElementById("mapContainer");
+// InfoBubble
+var infoBubbles = new nokia.maps.map.component.InfoBubbles(),
+	marker;
 // Kartan luonti
 var map = new nokia.maps.map.Display(mapContainer, {
     // Alkusijanti ja zoom level
@@ -14,11 +17,14 @@ var map = new nokia.maps.map.Display(mapContainer, {
 	maxZoomLevel: 17,
 	zoomLevel: 9,
     components: [
-        // Zoom ja pan tools
+        //infoBubble
+		infoBubbles,
+		// Zoom ja pan tools
 		new nokia.maps.map.component.ZoomBar(),
         new nokia.maps.map.component.Behavior()
     ]
 });
+
 // Reitinhaku
 var router = new nokia.maps.routing.Manager();
 
@@ -266,6 +272,7 @@ function getCoordinates(location)
 		
 	};
 
+
     
 function getInfo(id1) {
 // fetches restaurants name, address and website from the database
@@ -274,7 +281,27 @@ function getInfo(id1) {
       contentType: "application/json; charset=utf-8",
       dataType: "json",
       success: function(response, status){
-           alert(response["nimi"] + "\n" + response["osoite"]);
+           var bubbleUiElt = document.getElementById("bubble"),
+				htmlBubbleUiElt = document.getElementById("htmlBubble"),
+				nim = response["nimi"]
+				osoit = response["osoite"]
+				kunt = response["kunta"]
+				webosoit = response["webosoite"]
+				htmlStr = '<div>' +
+				'<p>' +
+				'<h2>' +
+				nim +
+				'<br />' +
+				'</h2>' +
+				osoit +
+				' ' +
+				kunt + 
+				'</p>' +
+				'<p><a href="' +
+				''+webosoit+'" target="_blank">' +
+				'RUOKALISTA</a></p></div>'
+				bubble = infoBubbles.openBubble(htmlStr, [y, x], "", true)
+		   ;	
           },
       error: function error(jqXHR, textStatus, errorThrown) {
             alert("Ravintolan tietojen haku epäonnistui.");
@@ -282,4 +309,3 @@ function getInfo(id1) {
     });
 
 }
-
