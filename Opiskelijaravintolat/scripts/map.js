@@ -272,7 +272,30 @@ function getCoordinates(location)
 		
 	};
 
-
+//infobubblen luonti -funktio
+function infobubbles(nim, osoit, kunt, webosoit)
+{
+	var bubbleUiElt = document.getElementById("bubble"),
+		htmlBubbleUiElt = document.getElementById("htmlBubble"),
+		//nim = response["nimi"]
+		//osoit = response["osoite"]
+		//kunt = response["kunta"]
+		//webosoit = response["webosoite"]
+		htmlStr = '<div>' +
+		'<p>' +
+		'<h2>' +
+		nim +
+		'<br />' +
+		'</h2>' +
+		osoit +
+		' ' +
+		kunt + 
+		'</p>' +
+		'<p><a href="' +
+		''+webosoit+'" target="_blank">' +
+		'RUOKALISTA</a></p></div>'
+		bubble = infoBubbles.openBubble(htmlStr, [y, x], "", true)
+};
     
 function getInfo(id1) {
 // fetches restaurants name, address and website from the database
@@ -281,27 +304,7 @@ function getInfo(id1) {
       contentType: "application/json; charset=utf-8",
       dataType: "json",
       success: function(response, status){
-           var bubbleUiElt = document.getElementById("bubble"),
-				htmlBubbleUiElt = document.getElementById("htmlBubble"),
-				nim = response["nimi"]
-				osoit = response["osoite"]
-				kunt = response["kunta"]
-				webosoit = response["webosoite"]
-				htmlStr = '<div>' +
-				'<p>' +
-				'<h2>' +
-				nim +
-				'<br />' +
-				'</h2>' +
-				osoit +
-				' ' +
-				kunt + 
-				'</p>' +
-				'<p><a href="' +
-				''+webosoit+'" target="_blank">' +
-				'RUOKALISTA</a></p></div>'
-				bubble = infoBubbles.openBubble(htmlStr, [y, x], "", true)
-		   ;	
+           infobubbles(response["nimi"], response["osoite"], response["kunta"], response["webosoite"]);	
           },
       error: function error(jqXHR, textStatus, errorThrown) {
             alert("Ravintolan tietojen haku epäonnistui.");
