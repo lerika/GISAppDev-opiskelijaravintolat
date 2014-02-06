@@ -10,6 +10,15 @@ var mapContainer = document.getElementById("mapContainer");
 var infoBubbles = new nokia.maps.map.component.InfoBubbles(),
 	marker;
 // Kartan luonti
+
+var standardMarkerProps = [
+	null,
+	{
+		brush: {
+			color:"FF0000"
+		}
+	}
+]
 var map = new nokia.maps.map.Display(mapContainer, {
     // Alkusijanti ja zoom level
     center: [60.1808, 24.9375],
@@ -41,7 +50,7 @@ if (nokia.maps.positioning.Manager) {
          
             function (position) {
                 var coords = position.coords, // koordinaatit
-                    alkusijainti = new nokia.maps.map.StandardMarker(coords); //marker
+                    alkusijainti = new nokia.maps.map.StandardMarker(coords, standardMarkerProps[1]); //marker
 					
 					map.objects.add(alkusijainti);
 					Location = position.coords;
@@ -215,7 +224,7 @@ function button3()
 	else
 	{
 		map.setCenter(Location);
-		var Marker = new nokia.maps.map.StandardMarker(map.center);
+		var Marker = new nokia.maps.map.StandardMarker(map.center, standardMarkerProps[1]);
 		
 		map.setZoomLevel(15);
 		map.objects.add(Marker);
@@ -266,7 +275,7 @@ function getCoordinates(location)
 			coordinates = [place.geometry.location.lat(), place.geometry.location.lng()];
 			userLocation = new nokia.maps.geo.Coordinate(coordinates[0], coordinates[1]);
 			map.setCenter(userLocation);
-			var SijaintiMarker = new nokia.maps.map.Marker(map.center);
+			var SijaintiMarker = new nokia.maps.map.StandardMarker(map.center, standardMarkerProps[1]);
 			map.setZoomLevel(15);
 			map.objects.add(SijaintiMarker);
 		
