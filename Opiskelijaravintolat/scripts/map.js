@@ -256,20 +256,36 @@ var coordinates = [];
 var input = /** @type {HTMLInputElement} */(
       document.getElementById('pac-input'));
 
-var autocomplete = new google.maps.places.Autocomplete(input);
+var autocomplete = new google.maps.places.Autocomplete(input, { bounds: new google.maps.LatLngBounds(
+        new google.maps.LatLng(59.778522,19.460448),
+        new google.maps.LatLng(70.170201,30.139159))}
+    );
   autocomplete.bindTo('bounds', map);
   
 	
 function getCoordinates(location) 
 	{
 			var place = autocomplete.getPlace();
-			coordinates = [place.geometry.location.lat(), place.geometry.location.lng()];
-			userLocation = new nokia.maps.geo.Coordinate(coordinates[0], coordinates[1]);
-			map.setCenter(userLocation);
-			var SijaintiMarker = new nokia.maps.map.Marker(map.center);
-			map.setZoomLevel(15);
-			map.objects.add(SijaintiMarker);
-		
+			if(!place.geometry) {
+				firstResult = $(".pac-container .pac-item:first").text();
+				var geocoder = new google.maps.Geocoder();
+				geocoder.geocode({"address":firstResult }, function(results, status) {
+					if (status == google.maps.GeocoderStatus.OK) {
+						userLocation = new nokia.maps.geo.Coordinate(results[0].geometry.location.lat(), results[0].geometry.location.lng());
+						map.setCenter(userLocation);
+						var SijaintiMarker = new nokia.maps.map.Marker(map.center);
+						map.setZoomLevel(15);
+						map.objects.add(SijaintiMarker);
+					}
+				});
+			} else{
+				coordinates = [place.geometry.location.lat(), place.geometry.location.lng()];
+				userLocation = new nokia.maps.geo.Coordinate(coordinates[0], coordinates[1]);
+				map.setCenter(userLocation);
+				var SijaintiMarker = new nokia.maps.map.Marker(map.center);
+				map.setZoomLevel(15);
+				map.objects.add(SijaintiMarker);
+			}
 	};
 
 
