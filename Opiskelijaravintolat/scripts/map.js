@@ -176,14 +176,14 @@ function button2() //etsii seuraavaksi lähimmän ravintolan
 	//poistetaan vanha reitti
 	
 	mapRoute.destroy();
-	//valitaan seuraavana taulussa oleva ravintola, käydään 5 läpi ja palataan ensimmmäiseen
-	if (indeksi < 4)
+	//valitaan seuraavana taulussa oleva ravintola, käydään läpi  2km sisällä olevat ja palataan ensimmmäiseen
+	if (lahin[indeksi].etaisyys < 2000)
 	{
 	indeksi = indeksi+1;
 	}
-	else
+	if (lahin[indeksi].etaisyys > 2000)
 	{
-	indeksi = 0;
+		indeksi = 0;
 	}
 	x = parseFloat(ravintolat[lahin[indeksi].id-1]["xkoord"]);
 	y = parseFloat(ravintolat[lahin[indeksi].id-1]["ykoord"]);
