@@ -89,7 +89,8 @@
         font-family: "Verdana";
 		font-size:89%;
 		background-color:rgb(228,208,234);
-		position: absolute;
-		bottom: 0;
+		position: relative;
+		bottom: 100% !important;
+        z-index: 2000 !important;
       }	
 

@@ -302,9 +302,27 @@ function getInfo(id1) {
 				'RUOKALISTA</a></p></div>'
 				bubble = infoBubbles.openBubble(htmlStr, [y, x], "", true)
 		   ;	
+           getMenu(1);
           },
       error: function error(jqXHR, textStatus, errorThrown) {
             alert("Ravintolan tietojen haku epäonnistui.");
+      }
+    });
+
+}
+
+function getMenu(id1) {
+// creates menu
+    //get weekday
+    var d = new Date();
+    var weekday = d.getDay();
+    $.ajax({
+      url: "index.php/site/getmenu/" + id1 + "?wday=" + weekday,
+      success: function(response, status){
+           alert(response);
+          },
+      error: function error(jqXHR, textStatus, errorThrown) {
+            alert("Ravintolan menun muodostaminen epäonnistui.");
       }
     });
 
