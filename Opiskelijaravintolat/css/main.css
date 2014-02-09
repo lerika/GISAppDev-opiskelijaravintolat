@@ -1,13 +1,11 @@
-
-			
 #mapContainer {
 	width: 100%;
 	height: 80%;
 	left: 0;
-	top: 0;
+	bottom: 0;
 	position: absolute;
-	
-	
+
+
 }
 
 #nappilahin {
@@ -29,7 +27,7 @@
     height: 100%;
     padding: 0px;
 }
-	
+
 #form {
     width: 100%;
     height: 100%;
@@ -46,7 +44,7 @@
 }
 
 #nappinayta {
-	
+
 	font-family:"Trebuchet MS";
     width: 100%;
     height: 100%;
@@ -59,7 +57,7 @@
 {
     position: absolute;
     border:0;
-    bottom: 0;
+    top: 0;
     left: 0;
     width: 100%;
     height: 20%;
@@ -89,8 +87,6 @@
         font-family: "Verdana";
 		font-size:89%;
 		background-color:rgb(228,208,234);
-		position: relative;
-		bottom: 100% !important;
-        z-index: 2000 !important;
+		position: absolute;
+		bottom: 0;
       }	
-

@@ -41,7 +41,7 @@ INSERT INTO ravintolat (id, nimi, osoite, kunta, geometria, webosoite) VALUES (2
 INSERT INTO ravintolat (id, nimi, osoite, kunta, geometria, webosoite) VALUES (24, 'Unicafe Valtiotiede', 'Unioninkatu 37', 'Helsinki', '0101000020E61000004615B47F54F3384003E0E9DF3F164E40', 'http://www.hyyravintolat.fi/unicafe/#/Keskusta/Valtiotiede/1/7');
 INSERT INTO ravintolat (id, nimi, osoite, kunta, geometria, webosoite) VALUES (25, 'Unicafe Olivia', 'Siltavuorenpenger 5', 'Helsinki', '0101000020E6100000D9C57E60D8F33840817B9E3F6D164E40', 'http://www.hyyravintolat.fi/unicafe/#/Keskusta/Olivia/1/2');
 INSERT INTO ravintolat (id, nimi, osoite, kunta, geometria, webosoite) VALUES (26, 'TeaK', 'Haapaniemenkatu 6', 'Helsinki', '0101000020E6100000DA03ADC090F53840AD7EB61F3A174E40', 'http://www.amica.fi/uniarts_teak');
-INSERT INTO ravintolat (id, nimi, osoite, kunta, geometria, webosoite) VALUES (27, 'Unicafe Ricola', 'Agricolankatu 1', 'Helsinki', '0101000020E6100000B1B49D00D4F438409BA84A00A3174E40', 'hhttp://www.hyyravintolat.fi/unicafe/#/Metropolia/Agricolankatu%20Ricola/9/27');
+INSERT INTO ravintolat (id, nimi, osoite, kunta, geometria, webosoite) VALUES (27, 'Unicafe Ricola', 'Agricolankatu 1', 'Helsinki', '0101000020E6100000B1B49D00D4F438409BA84A00A3174E40', 'http://www.hyyravintolat.fi/unicafe/#/Metropolia/Agricolankatu%20Ricola/9/27');
 INSERT INTO ravintolat (id, nimi, osoite, kunta, geometria, webosoite) VALUES (28, 'Alppica', 'Alppikatu 2', 'Helsinki', '0101000020E6100000F68B232070F03840191B5F20AD174E40', 'http://www.amica.fi/Ravintolat/Amica-ravintolat/Ravintolat-kaupungeittain/Helsinki/Helsingin-Diakonissalaitos--Alppica/');
 INSERT INTO ravintolat (id, nimi, osoite, kunta, geometria, webosoite) VALUES (29, 'Diakonia-Ammattikorkeakoulu', 'Sturenkatu 2', 'Helsinki', '0101000020E6100000315C1D0071F138400000000000184E40', 'http://www.amica.fi/diakonia');
 INSERT INTO ravintolat (id, nimi, osoite, kunta, geometria, webosoite) VALUES (30, 'Mäkelän koulu', 'Hattulantie 2', 'Helsinki', '0101000020E610000011058E5FD3F43840BCF957A027194E40', 'http://www.sodexo.fi/hbc');
@@ -87,7 +87,31 @@ INSERT INTO ravintolat (id, nimi, osoite, kunta, geometria, webosoite) VALUES (6
 INSERT INTO ravintolat (id, nimi, osoite, kunta, geometria, webosoite) VALUES (70, 'Jorvin sairaala', 'Turuntie 150', 'Espoo', '0101000020E61000005A187D6022B13840F2704C60841C4E40', 'http://www.hus.fi/hus-tietoa/liikelaitokset-ja-tukipalvelut/ravioli/lounasravintolat/Sivut/Jorvi.aspx');
 INSERT INTO ravintolat (id, nimi, osoite, kunta, geometria, webosoite) VALUES (71, 'Hella Wuolijoki', 'Ratatie 22', 'Vantaa', '0101000020E61000002222EB5F480B3940547BC7DFAC254E40', 'http://www.amica.fi/laurea');
 INSERT INTO ravintolat (id, nimi, osoite, kunta, geometria, webosoite) VALUES (72, 'Peijaksen sairaala', 'Sairaalakatu 1', 'Vantaa', '0101000020E6100000641CC81FB10E394059445E20522A4E40', 'http://www.hus.fi/hus-tietoa/liikelaitokset-ja-tukipalvelut/ravioli/lounasravintolat/Sivut/Peijaksen-sairaala.aspx');
---INSERT INTO ravintolat (id, nimi, osoite, kunta, geometria, webosoite) VALUES (73, '', '', '', '', '');
+INSERT INTO ravintolat (id, nimi, osoite, kunta, geometria, webosoite) VALUES (73, 'Café & Lunch Pinni', 'Kanslerinrinne 1', 'Tampere', '0101000020E610000000D75FC0DCC63740E754320054BF4E40', 'http://www.juvenes.fi/fi-fi/ravintolatjakahvilat/opiskelijaravintolat/tayp%C3%A4%C3%A4kampus/caf%C3%A9lunchpinni.aspx');
+INSERT INTO ravintolat (id, nimi, osoite, kunta, geometria, webosoite) VALUES (74, 'Campusravita', 'Kuntokatu 3', 'Tampere', '0101000020E610000023B2593F47CF374049F59D5F94C04E40', 'http://www.campusravita.fi/index.php?id=2&week=true');
+INSERT INTO ravintolat (id, nimi, osoite, kunta, geometria, webosoite) VALUES (75, 'Finn-Medi', 'Biokatu 6', 'Tampere', '0101000020E610000057389380E2CF3740479451C0D1C04E40', 'http://www.pikante.fi/lounaslistat#7-finn-medi');
+INSERT INTO ravintolat (id, nimi, osoite, kunta, geometria, webosoite) VALUES (76, 'Café Olive', 'Biokatu 4', 'Tampere', '0101000020E61000006B871AE0DDCF3740BA7DFBDFB6C04E40', 'http://www.pikante.fi/lounaslistat#4-olive');
+INSERT INTO ravintolat (id, nimi, osoite, kunta, geometria, webosoite) VALUES (77, 'Medica Arvo', 'Lääkärinkatu 1', 'Tampere', '0101000020E6100000FAF83A5FA2D237406094A0BFD0C04E40', 'http://www.juvenes.fi/fi-fi/ravintolatjakahvilat/opiskelijaravintolat/taykaupinkampus/medicaarvo.aspx');
+INSERT INTO ravintolat (id, nimi, osoite, kunta, geometria, webosoite) VALUES (78, 'Minerva', 'Kanslerinrinne 1', 'Tampere', '0101000020E610000000D75FC0DCC63740E754320054BF4E40', 'http://www.amica.fi/minerva');
+INSERT INTO ravintolat (id, nimi, osoite, kunta, geometria, webosoite) VALUES (79, 'Pirteria', 'Kuntokatu 4', 'Tampere', '0101000020E6100000456D76FFB3CF374068A730009EC04E40', 'http://www.amica.fi/pirteria');
+INSERT INTO ravintolat (id, nimi, osoite, kunta, geometria, webosoite) VALUES (80, 'Café Rom', 'Korkeakoulunkatu 1', 'Tampere', '0101000020E61000001F45420015DB37400D9535A094B94E40', 'http://www.juvenes.fi/fi-fi/ravintolatjakahvilat/opiskelijaravintolat/ttykampus/caf%C3%A9rom.aspx');
+INSERT INTO ravintolat (id, nimi, osoite, kunta, geometria, webosoite) VALUES (81, 'Zip', 'Korkeakoulunkatu 1', 'Tampere', '0101000020E61000001F45420015DB37400D9535A094B94E40', 'http://www.juvenes.fi/fi-fi/ravintolatjakahvilat/opiskelijaravintolat/ttykampus/zip.aspx');
+INSERT INTO ravintolat (id, nimi, osoite, kunta, geometria, webosoite) VALUES (82, 'Café & Fast Voltti', 'Korkeakoulunkatu 3', 'Tampere', '0101000020E6100000739769A09EDB3740F64AB43FABB94E40', 'http://www.juvenes.fi/fi-fi/ravintolatjakahvilat/opiskelijaravintolat/ttykampus/caf%C3%A9fastvoltti.aspx');
+INSERT INTO ravintolat (id, nimi, osoite, kunta, geometria, webosoite) VALUES (83, 'Café & Pastabaari Voltti', 'Korkeakoulunkatu 3', 'Tampere', '0101000020E6100000739769A09EDB3740F64AB43FABB94E40', 'http://www.juvenes.fi/fi-fi/ravintolatjakahvilat/opiskelijaravintolat/ttykampus/caf%C3%A9pastabaarivoltti.aspx');
+INSERT INTO ravintolat (id, nimi, osoite, kunta, geometria, webosoite) VALUES (84, 'Ravintola Edison', 'Korkeakoulunkatu 3', 'Tampere', '0101000020E6100000739769A09EDB3740F64AB43FABB94E40', 'http://www.juvenes.fi/fi-fi/ravintolatjakahvilat/opiskelijaravintolat/ttykampus/edison.aspx');
+INSERT INTO ravintolat (id, nimi, osoite, kunta, geometria, webosoite) VALUES (85, 'Huugo', 'Pyynikintie 2', 'Tampere', '0101000020E61000001AE9FB5F64BE3740FBA3B95F4FBF4E40', 'http://www.amica.fi/huugo');
+INSERT INTO ravintolat (id, nimi, osoite, kunta, geometria, webosoite) VALUES (86, 'Linna', 'Kalevantie 5', 'Tampere', '0101000020E61000005D39D62027C73740FB39AA3F67BF4E40', 'http://www.sodexo.fi/linna');
+INSERT INTO ravintolat (id, nimi, osoite, kunta, geometria, webosoite) VALUES (87, 'Medica Bio', 'Medisiinarinkatu 3', 'Tampere', '0101000020E61000000604842051D237406E64C33F11C14E40', 'http://www.juvenes.fi/fi-fi/ravintolatjakahvilat/opiskelijaravintolat/taykaupinkampus/medicabio.aspx');
+INSERT INTO ravintolat (id, nimi, osoite, kunta, geometria, webosoite) VALUES (88, 'Newton', 'Korkeakoulunkatu 6', 'Tampere', '0101000020E6100000CDBA359F29DC37403D4C56A071B94E40', 'http://www.juvenes.fi/fi-fi/ravintolatjakahvilat/opiskelijaravintolat/ttykampus/newton.aspx');
+INSERT INTO ravintolat (id, nimi, osoite, kunta, geometria, webosoite) VALUES (89, 'Café Motivaattori', 'Korkeakoulunkatu 6', 'Tampere', '0101000020E6100000CDBA359F29DC37403D4C56A071B94E40', 'http://www.juvenes.fi/fi-fi/ravintolatjakahvilat/opiskelijaravintolat/ttykampus/caf%C3%A9motivaattori.aspx');
+INSERT INTO ravintolat (id, nimi, osoite, kunta, geometria, webosoite) VALUES (90, 'TAMK Dot', 'Itäinenkatu 9', 'Tampere', '0101000020E61000007DC4549F50C237400B896A0025C04E40', 'http://www.juvenes.fi/fi-fi/ravintolatjakahvilat/opiskelijaravintolat/tamkdot.aspx');
+INSERT INTO ravintolat (id, nimi, osoite, kunta, geometria, webosoite) VALUES (91, 'Soppis', 'F.E. Sillanpään katu 9', 'Tampere', '0101000020E61000004A5C6CFF6FBD3740DE44E33F93BF4E40', 'http://www.soppis.fi/lounaslista.html');
+INSERT INTO ravintolat (id, nimi, osoite, kunta, geometria, webosoite) VALUES (92, 'Tampereen normaalikoulu', 'Kuokkamaantie 16', 'Tampere', '0101000020E61000006419879FA4CB374015FA0560A8BD4E40', 'http://www.amica.fi/tampereennormaalikoulu');
+INSERT INTO ravintolat (id, nimi, osoite, kunta, geometria, webosoite) VALUES (93, 'Salaattibaari', 'Kalevantie 4', 'Tampere', '0101000020E6100000C79052BFC1C73740DFEF614040BF4E40', 'http://www.juvenes.fi/fi-fi/ravintolatjakahvilat/opiskelijaravintolat/tayp%C3%A4%C3%A4kampus/yliopistonravintola/salaattibaari.aspx');
+INSERT INTO ravintolat (id, nimi, osoite, kunta, geometria, webosoite) VALUES (94, 'Yliopiston Ravintola', 'Kalevantie 4', 'Tampere', '0101000020E6100000C79052BFC1C73740DFEF614040BF4E40', 'http://www.juvenes.fi/fi-fi/ravintolatjakahvilat/opiskelijaravintolat/tayp%C3%A4%C3%A4kampus/yliopistonravintola.aspx');
+INSERT INTO ravintolat (id, nimi, osoite, kunta, geometria, webosoite) VALUES (95, 'Fusion Kitchen', 'Kalevantie 4', 'Tampere', '0101000020E6100000C79052BFC1C73740DFEF614040BF4E40', 'http://www.juvenes.fi/fi-fi/ravintolatjakahvilat/opiskelijaravintolat/tayp%C3%A4%C3%A4kampus/yliopistonravintola/fusionkitchen.aspx');
+INSERT INTO ravintolat (id, nimi, osoite, kunta, geometria, webosoite) VALUES (96, 'Café Alakuppila', 'Kalevantie 4', 'Tampere', '0101000020E6100000C79052BFC1C73740DFEF614040BF4E40', 'http://www.juvenes.fi/fi-fi/ravintolatjakahvilat/opiskelijaravintolat/tayp%C3%A4%C3%A4kampus/caf%C3%A9alakuppila.aspx');
+--INSERT INTO ravintolat (id, nimi, osoite, kunta, geometria, webosoite) VALUES (97, '', '', '', '', '');
 
 
 
@@ -95,7 +119,7 @@ INSERT INTO ravintolat (id, nimi, osoite, kunta, geometria, webosoite) VALUES (7
 -- Name: ravintolat_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('ravintolat_id_seq', 72, true);
+SELECT pg_catalog.setval('ravintolat_id_seq', 96, true);
 
 
 --
