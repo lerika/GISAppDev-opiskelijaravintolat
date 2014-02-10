@@ -298,15 +298,18 @@ function getCoordinates(location)
 	};
 
 //infobubblen luonti -funktio
-function infobubbles(nim, osoit, kunt, webosoit)
+function infobubbles(nim, osoit, kunt, webosoit, rss)
 {
-	var bubbleUiElt = document.getElementById("bubble"),
-		htmlBubbleUiElt = document.getElementById("htmlBubble"),
-		//nim = response["nimi"]
-		//osoit = response["osoite"]
-		//kunt = response["kunta"]
-		//webosoit = response["webosoite"]
-		htmlStr = '<div>' +
+    var linkki;
+    if (rss == 1 || rss == 2) {
+        var w = "'" + webosoit + "'"
+        linkki = '"javascript:void(0)" onClick="getMenu('+ rss + ', ' + w + ')"';
+    } else {
+        linkki = '"' + webosoit + '" target="_blank"';
+    }
+	var bubbleUiElt = document.getElementById("bubble");
+	htmlBubbleUiElt = document.getElementById("htmlBubble");
+	htmlStr = '<div>' +
 		'<p>' +
 		'<h2>' +
 		nim +
@@ -316,10 +319,10 @@ function infobubbles(nim, osoit, kunt, webosoit)
 		' ' +
 		kunt + 
 		'</p>' +
-		'<p><a href="' +
-		''+webosoit+'" target="_blank">' +
-		'RUOKALISTA</a></p></div>'
-		bubble = infoBubbles.openBubble(htmlStr, [y, x], "", true)
+		'<p><a href=' +
+		linkki + '>' +
+		'RUOKALISTA</a></p></div>';
+	bubble = infoBubbles.openBubble(htmlStr, [y, x], "", true);  
 };
     
 function getInfo(id1) {
@@ -329,8 +332,7 @@ function getInfo(id1) {
       contentType: "application/json; charset=utf-8",
       dataType: "json",
       success: function(response, status){
-           infobubbles(response["nimi"], response["osoite"], response["kunta"], response["webosoite"]);	
-           //getMenu(1);
+           infobubbles(response["nimi"], response["osoite"], response["kunta"], response["webosoite"], response["rss"]);	
       },
       error: function error(jqXHR, textStatus, errorThrown) {
             alert("Ravintolan tietojen haku epäonnistui.");
@@ -339,13 +341,14 @@ function getInfo(id1) {
 
 }
 
-function getMenu(id1) {
+function getMenu(rss, www) {
 // creates menu
     //get weekday
     var d = new Date();
     var weekday = d.getDay();
+    //var www1 = encodeURIComponent(www);
     $.ajax({
-      url: "index.php/site/getmenu/" + id1 + "?wday=" + weekday,
+      url: "index.php/site/getmenu?wday=" + weekday + "&rss=" + rss + "&wwwa=" + www,
       success: function(response, status){
            alert(response);
           },
