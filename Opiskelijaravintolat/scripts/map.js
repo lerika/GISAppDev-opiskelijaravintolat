@@ -271,7 +271,8 @@ var autocomplete = new google.maps.places.Autocomplete(input, { bounds: new goog
     );
   autocomplete.bindTo('bounds', map);
   
-	
+google.maps.event.addListener(autocomplete, 'place_changed', function () {getCoordinates(document.getElementById("pac-input").value)});
+
 function getCoordinates(location) 
 	{
 			var place = autocomplete.getPlace();
@@ -282,7 +283,7 @@ function getCoordinates(location)
 					if (status == google.maps.GeocoderStatus.OK) {
 						userLocation = new nokia.maps.geo.Coordinate(results[0].geometry.location.lat(), results[0].geometry.location.lng());
 						map.setCenter(userLocation);
-						var SijaintiMarker = new nokia.maps.map.Marker(map.center);
+						var SijaintiMarker = new nokia.maps.map.Marker(map.center, {brush: "#FF0000"});
 						map.setZoomLevel(15);
 						map.objects.add(SijaintiMarker);
 					}
@@ -291,7 +292,7 @@ function getCoordinates(location)
 				coordinates = [place.geometry.location.lat(), place.geometry.location.lng()];
 				userLocation = new nokia.maps.geo.Coordinate(coordinates[0], coordinates[1]);
 				map.setCenter(userLocation);
-				var SijaintiMarker = new nokia.maps.map.Marker(map.center);
+				var SijaintiMarker = new nokia.maps.map.Marker(map.center, {brush: "#FF0000"});
 				map.setZoomLevel(15);
 				map.objects.add(SijaintiMarker);
 			}
