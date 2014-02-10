@@ -63,11 +63,12 @@ class SiteController extends Controller
         $rawFeed = file_get_contents($wwwa);
         $xml = new SimpleXmlElement($rawFeed);
         
-        
-        $doc = new DOMDocument();
+       
         $doc_new = new DOMDocument();
         
         if ($rss == 1) {
+            $doc = new DOMDocument();
+            
             $d = $xml->xpath('//item/description');
             
             $doc->loadHTML('<meta http-equiv="content-type" content="text/html; charset=utf-8">'.$d[0]);
