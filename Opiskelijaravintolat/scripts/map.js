@@ -156,8 +156,8 @@ function button() //etsii lähimmän ravintolan
 	})
 	//valitaan lähin ravintola
 	indeksi = 0;
-	x = parseFloat(ravintolat[lahin[indeksi].id-1]["xkoord"]);
-	y = parseFloat(ravintolat[lahin[indeksi].id-1]["ykoord"]);
+	x = parseFloat(lahin[indeksi].x);
+	y = parseFloat(lahin[indeksi].y);
 	var waypoints = new nokia.maps.routing.WaypointParameterList();
     waypoints.addCoordinate(startpoint);
     waypoints.addCoordinate(new nokia.maps.geo.Coordinate(y,x));
@@ -194,8 +194,8 @@ function button2() //etsii seuraavaksi lähimmän ravintolan
 	{
 		indeksi = 0;
 	}
-	x = parseFloat(ravintolat[lahin[indeksi].id-1]["xkoord"]);
-	y = parseFloat(ravintolat[lahin[indeksi].id-1]["ykoord"]);
+	x = parseFloat(lahin[indeksi].x);
+	y = parseFloat(lahin[indeksi].y);
 	var waypoints = new nokia.maps.routing.WaypointParameterList();
 	waypoints.clear();
     waypoints.addCoordinate(startpoint);
@@ -249,15 +249,17 @@ function lista(id, x, y) //laskee etäisyydet ravintoloihin
 	var Location2 = new nokia.maps.geo.Coordinate(y,x); 
 	var z = Location2.distance(startpoint);
 
-	lahin.push(new ravintola(id, z));
+	lahin.push(new ravintola(id, z, x, y));
 	
 
 };
 //ravintola objekti
-function ravintola(id, etaisyys)
+function ravintola(id, etaisyys,x,y)
 	{
 		this.id = id;
 		this.etaisyys = etaisyys;
+        this.x = x;
+        this.y = y;
 	}
 //käyttäjän antaman paikan koordinaatit
 var coordinates = [];

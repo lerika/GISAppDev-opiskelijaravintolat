@@ -111,7 +111,7 @@ class SiteController extends Controller
             else if ($wday == 5)
                 $d = $xml->xpath("//item[./*[contains(text(), 'Perjantai')] or ./*[contains(text(), 'perjantai')]]/description");
             else {
-                $node = $doc_new->createElement("div", "Ei ruokaa sunnuntaisin.");
+                $node = $doc_new->createElement("div", "Ei ruokalistaa saatavilla.");
                 $doc_new->appendChild($node);
                 echo $doc_new->saveHTML();
                 Yii::app()->end();
