@@ -350,7 +350,8 @@ function getMenu(rss, www) {
     $.ajax({
       url: "index.php/site/getmenu?wday=" + weekday + "&rss=" + rss + "&wwwa=" + www,
       success: function(response, status){
-           alert(response);
+            $("#menuDialog").dialog();
+            $("#menuDialog").html(response);
           },
       error: function error(jqXHR, textStatus, errorThrown) {
             alert("Ravintolan menun muodostaminen epäonnistui.");

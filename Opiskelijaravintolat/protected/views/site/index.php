@@ -6,6 +6,7 @@ $this->pageTitle=Yii::app()->name;
 
 <div id="mapContainer">
 </div>
+<div id="menuDialog" title="Menu"></div>
 <table id="btntbl">
 
 	<tr>
