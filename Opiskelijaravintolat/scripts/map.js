@@ -122,7 +122,7 @@ function addMarkerToMap(x, y, id)
 			)
 		;
 
-		ravintolamarker.addListener("click", function(evt) {
+		ravintolamarker.addListener(CLICK, function(evt) {
 			if (( evt.target.$href === undefined) == false){
 				window.location = evt.target.$href; 
 			}  else if (( evt.target.$click === undefined) == false){
