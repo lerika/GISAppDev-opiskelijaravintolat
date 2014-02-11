@@ -9,6 +9,7 @@ var mapContainer = document.getElementById("mapContainer");
 // InfoBubble
 var infoBubbles = new nokia.maps.map.component.InfoBubbles(),
 	marker;
+
 // Kartan luonti
 
 var standardMarkerProps = [
@@ -39,6 +40,9 @@ var router = new nokia.maps.routing.Manager();
 
 document.getElementById("nappiseuraava").disabled = true;
 
+//markkereille
+var TOUCH = nokia.maps.dom.Page.browser.touch,
+	CLICK = TOUCH ? "tap" : "click";
 
 //Käyttäjän sijainti
 if (nokia.maps.positioning.Manager) {
@@ -102,18 +106,45 @@ var modes = [{
     trafficMode: "default"
 }];
 
+//Markkerin kartalle lisäys -funktio
+function addMarkerToMap(x, y, id) 
+{
+	var id = id;
+	var x = x;
+	var y = y;
+		
+		var ravintolamarker = new nokia.maps.map.StandardMarker(
+			[y,x],
+			{
+				$click : 'getInfo(myValue);',
+				brush: {color: "#0000FF"}
+			}
+			)
+		;
+
+		ravintolamarker.addListener("click", function(evt) {
+			if (( evt.target.$href === undefined) == false){
+				window.location = evt.target.$href; 
+			}  else if (( evt.target.$click === undefined) == false){
+				var onClickDo = new Function(evt.target.$click);
+				window.myValue = id;
+				onClickDo();
+			}
+		});
+		
+			map.objects.add(ravintolamarker);
+};
 
 //Markkereiden luonti -funktio
 function markers()
 {
 	for (var i = 0; i < ravintolat.length; i++)
 		{
-		x = parseFloat(ravintolat[i]["xkoord"]);
-		y = parseFloat(ravintolat[i]["ykoord"]);
-
-		var ravintolamarker = new nokia.maps.map.StandardMarker([y,x]);
-		ravintolamarker.brush.color = "#0000FF";
-		map.objects.add(ravintolamarker);
+		x_mark = parseFloat(ravintolat[i]["xkoord"]);
+		y_mark = parseFloat(ravintolat[i]["ykoord"]);
+		id_mark = parseFloat(ravintolat[i]["id"]);
+		
+		addMarkerToMap(x_mark, y_mark, id_mark);
 		}
 };
 //markkerit luodaan
@@ -298,12 +329,16 @@ function getCoordinates(location)
 				map.setZoomLevel(15);
 				map.objects.add(SijaintiMarker);
 			}
+			infoBubbles.closeAll();
 	};
 
 //infobubblen luonti -funktio
-function infobubbles(nim, osoit, kunt, webosoit, rss)
+function infobubbles(nim, osoit, kunt, webosoit, rss, x_bub, y_bub)
 {
-    var linkki;
+    var x = parseFloat(x_bub)
+	var y = parseFloat(y_bub)
+	var coord = new nokia.maps.geo.Coordinate (y, x);
+	var linkki;
     if (rss == 1 || rss == 2) {
         var w = "'" + webosoit + "'"
         linkki = '"javascript:void(0)" onClick="getMenu('+ rss + ', ' + w + ')"';
@@ -325,7 +360,7 @@ function infobubbles(nim, osoit, kunt, webosoit, rss)
 		'<p><a href=' +
 		linkki + '>' +
 		'RUOKALISTA</a></p></div>';
-	bubble = infoBubbles.openBubble(htmlStr, [y, x], "", true);  
+	bubble = infoBubbles.openBubble(htmlStr, coord, "", true);  
 };
     
 function getInfo(id1) {
@@ -335,7 +370,7 @@ function getInfo(id1) {
       contentType: "application/json; charset=utf-8",
       dataType: "json",
       success: function(response, status){
-           infobubbles(response["nimi"], response["osoite"], response["kunta"], response["webosoite"], response["rss"]);	
+           infobubbles(response["nimi"], response["osoite"], response["kunta"], response["webosoite"], response["rss"], response["xkoord"], response["ykoord"]);	
       },
       error: function error(jqXHR, textStatus, errorThrown) {
             alert("Ravintolan tietojen haku epäonnistui.");

@@ -45,7 +45,7 @@ class SiteController extends Controller
 	{
         
         $restinfo = Yii::app()->db->createCommand()
-        ->select('nimi, osoite, kunta, webosoite, rss')
+        ->select('nimi, osoite, kunta, webosoite, rss, st_x(geometria) as xkoord, st_y(geometria) as ykoord')
         ->from('ravintolat u')
         ->where('id=:id', array(':id'=>$id))
         ->queryRow();
