@@ -159,7 +159,7 @@ function button() //etsii lähimmän ravintolan
 	
 	var startpoint;
 	//tarkistetaan käytetäänkö geolocation vai käyttäjän antamaa sijaintia
-	if (document.getElementById("pac-input").value=="")
+	if (document.getElementById("searchbox-input").value=="")
 	{
 		startpoint = Location;
 		lahin = [];
@@ -204,7 +204,7 @@ function button2() //etsii seuraavaksi lähimmän ravintolan
 {
 	var startpoint;
 	//tarkistetaan käytetäänkö geolocation vai käyttäjän antamaa sijaintia
-	if (document.getElementById("pac-input").value=="")
+	if (document.getElementById("searchbox-input").value=="")
 	{
 		startpoint = Location;
 	}
@@ -246,10 +246,10 @@ function button3()
 	map.objects.clear();
 	markers();
 	//luodaan  ravintolat markkerit uudestaan hävitettyjen tilalle
-	if (document.getElementById("pac-input").value!=="")
+	if (document.getElementById("searchbox-input").value!=="")
 	{
 		
-		getCoordinates(document.getElementById("pac-input").value);
+		showLocation();
 
 	}
 	else
@@ -269,7 +269,7 @@ var lahin = [];
 function lista(id, x, y) //laskee etäisyydet ravintoloihin
 {
 	var startpoint;
-	if (document.getElementById("pac-input").value=="")
+	if (document.getElementById("searchbox-input").value=="")
 	{
 		startpoint = Location;
 	}
@@ -295,42 +295,33 @@ function ravintola(id, etaisyys,x,y)
 //käyttäjän antaman paikan koordinaatit
 var coordinates = [];
 	
-var input = /** @type {HTMLInputElement} */(
-      document.getElementById('pac-input'));
-
-var autocomplete = new google.maps.places.Autocomplete(input, { bounds: new google.maps.LatLngBounds(
-        new google.maps.LatLng(59.778522,19.460448),
-        new google.maps.LatLng(70.170201,30.139159))}
-    );
-  autocomplete.bindTo('bounds', map);
-  
-google.maps.event.addListener(autocomplete, 'place_changed', function () {getCoordinates(document.getElementById("pac-input").value)});
-
-function getCoordinates(location) 
-	{
-			var place = autocomplete.getPlace();
-			if(!place.geometry) {
-				firstResult = $(".pac-container .pac-item:first").text();
-				var geocoder = new google.maps.Geocoder();
-				geocoder.geocode({"address":firstResult }, function(results, status) {
-					if (status == google.maps.GeocoderStatus.OK) {
-						userLocation = new nokia.maps.geo.Coordinate(results[0].geometry.location.lat(), results[0].geometry.location.lng());
-						map.setCenter(userLocation);
-						var SijaintiMarker = new nokia.maps.map.Marker(map.center, {brush: "#FF0000"});
-						map.setZoomLevel(15);
-						map.objects.add(SijaintiMarker);
-					}
-				});
-			} else{
-				coordinates = [place.geometry.location.lat(), place.geometry.location.lng()];
+var customSearchBox = new nokia.places.widgets.SearchBox({
+			targetNode: "customSearchBox",
+			template: "customSearchBox",
+			searchCenter: function () {
+				return {
+					latitude: 60.1808,
+					longitude: 24.9375
+				};
+			},
+			onResults: function (data) {
+				locations = data.results ? data.results.items : [data.location];
+				coordinates = [locations[0].position.latitude, locations[0].position.longitude];
 				userLocation = new nokia.maps.geo.Coordinate(coordinates[0], coordinates[1]);
 				map.setCenter(userLocation);
-				var SijaintiMarker = new nokia.maps.map.Marker(map.center, {brush: "#FF0000"});
+				var SijaintiMarker = new nokia.maps.map.StandardMarker(map.center, {brush: "#FF0000"});
 				map.setZoomLevel(15);
 				map.objects.add(SijaintiMarker);
 			}
-			infoBubbles.closeAll();
-	};
+});    
+  
+function showLocation () {
+	map.setCenter(userLocation);
+	var SijaintiMarker = new nokia.maps.map.StandardMarker(map.center, {brush: "#FF0000"});
+	map.setZoomLevel(15);
+	map.objects.add(SijaintiMarker);
+	infoBubbles.closeAll();
+};
 
 //infobubblen luonti -funktio
 function infobubbles(nim, osoit, kunt, webosoit, rss, x_bub, y_bub)

@@ -20,7 +20,12 @@ $this->pageTitle=Yii::app()->name;
 	<tr>
 		<form name="userlocation" action="" onsubmit="button3(); return false" method="get">
 		<td>
-			<input type="text" name="pac-input" id="pac-input" placeholder="Oma sijainti" value=""/>
+			<div id="customSearchBox" class="main-search">
+				<div module="SearchBox">
+					<input id="searchbox-input" rel="searchbox-input" class="main-search" type="text" placeholder="Oma sijainti" value=""/>
+					<div rel="searchbox-list" class="search-list"></div>
+				</div>
+			</div>
 		</td>
 		<td>
 			<input type="button" value="Näytä sijainti" onclick="button3()" id="nappinayta"/> 
