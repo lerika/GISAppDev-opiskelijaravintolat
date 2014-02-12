@@ -35,7 +35,6 @@ $this->pageTitle=Yii::app()->name;
 
 </table>
 <script type="text/javascript" charset="UTF-8" src="http://js.cit.api.here.com/se/2.5.3/jsl.js?with=all"></script>
-<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&libraries=places"></script>
 <script type="text/javascript">
 
     var ravintolat = [];
