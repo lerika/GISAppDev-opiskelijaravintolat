@@ -87,17 +87,11 @@
 .main-search .search-list dt {
 			width: 50%;
 			background-color:rgb(228,208,234);
+			margin-left: 5%;
 }
 .main-search .search-list dd.selected {
-			background-color: #4F97D2;
+			background-color: rgb(213,170,198);
 			color: #f5f5f5;
 			cursor: pointer;
 		
-			-webkit-transition: all 0.2s ease-in-out;
-			-moz-transition: all 0.2s ease-in-out;
-			-o-transition: all 0.2s ease-in-out;
-		
-			-webkit-transform: scale(1.03);
-			-moz-transform: scale(1.03);
-			-o-transform: scale(1.03);
 }
