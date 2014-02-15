@@ -83,8 +83,11 @@ class SiteController extends Controller
                 $elements = $xpath->query("//*[following-sibling::*[contains(text(), 'Torstai')] and preceding-sibling::*[contains(text(), 'Keskiviikko')]]");
             else if ($wday == 4)
                 $elements = $xpath->query("//*[following-sibling::*[contains(text(), 'Perjantai')] and preceding-sibling::*[contains(text(), 'Torstai')]]");
-            else if ($wday == 5)
+            else if ($wday == 5) {
                 $elements = $xpath->query("//*[following-sibling::*[contains(text(), 'Lauantai')] and preceding-sibling::*[contains(text(), 'Perjantai')]]");
+                if ($elements->length == 0)
+                    $elements = $xpath->query("//*[preceding-sibling::*[contains(text(), 'Perjantai')]]");
+                }
             else if ($wday == 6)
                 $elements = $xpath->query("//*[preceding-sibling::*[contains(text(), 'Lauantai')]]");
             else {
@@ -111,14 +114,19 @@ class SiteController extends Controller
             else if ($wday == 5)
                 $d = $xml->xpath("//item[./*[contains(text(), 'Perjantai')] or ./*[contains(text(), 'perjantai')]]/description");
             else {
-                $node = $doc_new->createElement("div", "Ei ruokalistaa saatavilla.");
-                $doc_new->appendChild($node);
-                echo $doc_new->saveHTML();
-                Yii::app()->end();
+                if ($wday == 6) {
+                    $d = $xml->xpath("//item[./*[contains(text(), 'Lauantai')] or ./*[contains(text(), 'lauantai')]]/description");
+                }
+                if (count($d) == 0 or $wday != 6) {
+                    $node = $doc_new->createElement("div", "Ei ruokalistaa saatavilla.");
+                    $doc_new->appendChild($node);
+                    echo $doc_new->saveHTML();
+                    Yii::app()->end();
+                }
             }
             
             $clean = str_replace(" & ", " ja ", $d[0]);
-            $doc_new->loadHTML($clean);
+            $doc_new->loadHTML('<meta http-equiv="content-type" content="text/html; charset=utf-8">'.$clean);
             
         }
         

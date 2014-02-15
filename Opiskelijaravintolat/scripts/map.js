@@ -376,7 +376,7 @@ function getMenu(rss, www) {
     var d = new Date();
     var weekday = d.getDay();
     //var www1 = encodeURIComponent(www);
-    //weekday = 7;
+    //weekday = 5;
     $.ajax({
       url: "index.php/site/getmenu?wday=" + weekday + "&rss=" + rss + "&wwwa=" + www,
       success: function(response, status){
