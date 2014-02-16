@@ -396,3 +396,5 @@ function getMenu(rss, www) {
     });
 
 }
+
+$("#infoDialog").dialog();

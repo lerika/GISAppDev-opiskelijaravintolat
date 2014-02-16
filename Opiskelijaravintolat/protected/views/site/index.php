@@ -7,6 +7,10 @@ $this->pageTitle=Yii::app()->name;
 <div id="mapContainer">
 </div>
 <div id="menuDialog" title="Menu"></div>
+<div id="infoDialog" title="Menu">
+    <p>Palvelu etsii omasta sijainnistasi tai antamastasi osoitteesta 2 km säteellä sijaitsevat opiskelijaravintolat.<br/>
+    Ole hyvä ja <a href="https://docs.google.com/forms/d/1Du5x12R6Mv0JxK5y94mEWLHsh2R7wUOmgOdD8CEx1N4/viewform" target="_blank">anna testipalautetta palvelusta</a></p>
+</div>
 <table id="btntbl">
 
 	<tr>
