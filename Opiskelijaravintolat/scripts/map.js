@@ -174,10 +174,10 @@ function button() //etsii lähimmän ravintolan
 	}
 	else
 	{
-        customSearchBox.search(); 
 		startpoint = userLocation;
 		lahin = [];
 	}
+
 	//poistetaan vanha reitti jos sellainen on
 	if (mapRoute !==0)
 	{
@@ -199,7 +199,7 @@ function button() //etsii lähimmän ravintolan
 	x = parseFloat(lahin[indeksi].x);
 	y = parseFloat(lahin[indeksi].y);
 	var waypoints = new nokia.maps.routing.WaypointParameterList();
-
+	waypoints.clear();
     waypoints.addCoordinate(startpoint); 
    
     waypoints.addCoordinate(new nokia.maps.geo.Coordinate(y,x));
@@ -252,11 +252,6 @@ function button2() //etsii seuraavaksi lähimmän ravintolan
 
 function button3()
 {
-	infoBubbles.closeAll();
-	map.objects.clear();
-	markers();
-    
-	//luodaan  ravintolat markkerit uudestaan hävitettyjen tilalle
 	if (document.getElementById("searchbox-input").value!=="")
 	{
 		
@@ -326,6 +321,11 @@ var customSearchBox = new nokia.places.widgets.SearchBox({
 				SijaintiMarker = new nokia.maps.map.StandardMarker(map.center, {brush: "#FF0000"});
 				map.setZoomLevel(15);
 				map.objects.add(SijaintiMarker);
+				infoBubbles.closeAll();				
+				if (mapRoute !==0)
+				{
+					mapRoute.destroy();	
+				}
 			}
 });    
 
