@@ -18,7 +18,6 @@ $this->pageTitle=Yii::app()->name;
 		</td>
 	</tr>
 	<tr>
-		<form name="userlocation" action="" onsubmit="button3(); return false" method="get">
 		<td>
 			<div id="customSearchBox" class="main-search">
 				<div module="SearchBox">
@@ -30,7 +29,6 @@ $this->pageTitle=Yii::app()->name;
 		<td>
 			<input type="button" value="Näytä sijainti" onclick="button3()" id="nappinayta"/> 
 		</td>
-		</form>
 	</tr>
 
 </table>

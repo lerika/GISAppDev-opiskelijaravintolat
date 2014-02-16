@@ -3,13 +3,17 @@ nokia.Settings.set("app_id", "pDOGtkxwxdAkuQCiL7e4");
 nokia.Settings.set("app_code", "cyPj3vIrgjsZy9sgWqga-g");
 // App-tiedot
 var Location = new nokia.maps.geo.Coordinate(0, 0);
+var userLocation = new nokia.maps.geo.Coordinate(0, 0);
+
+//käyttäjän antaman paikan koordinaatit
+var coordinates = [];
 
 // DOM node kartalle
 var mapContainer = document.getElementById("mapContainer");
 // InfoBubble
 var infoBubbles = new nokia.maps.map.component.InfoBubbles(),
 	marker;
-
+   
 // Kartan luonti
 
 var standardMarkerProps = [
@@ -20,6 +24,7 @@ var standardMarkerProps = [
 		}
 	}
 ]
+
 var map = new nokia.maps.map.Display(mapContainer, {
     // Alkusijanti ja zoom level
     center: [60.1808, 24.9375],
@@ -34,6 +39,9 @@ var map = new nokia.maps.map.Display(mapContainer, {
         new nokia.maps.map.component.Behavior()
     ]
 });
+
+//Oman sijainnin marker
+var SijaintiMarker = new nokia.maps.map.StandardMarker(map.center, {brush: "#FF0000"});  
 
 // Reitinhaku
 var router = new nokia.maps.routing.Manager();
@@ -53,10 +61,10 @@ if (nokia.maps.positioning.Manager) {
         positioning.getCurrentPosition(
          
             function (position) {
-                var coords = position.coords, // koordinaatit
-                    alkusijainti = new nokia.maps.map.StandardMarker(coords, standardMarkerProps[1]); //marker
+                var coords = position.coords; // koordinaatit
+                    SijaintiMarker = new nokia.maps.map.StandardMarker(coords, standardMarkerProps[1]); //marker
 					
-					map.objects.add(alkusijainti);
+					map.objects.add(SijaintiMarker);
 					Location = position.coords;
 					map.setCenter(coords);
 					map.setZoomLevel(15);
@@ -166,6 +174,7 @@ function button() //etsii lähimmän ravintolan
 	}
 	else
 	{
+        customSearchBox.search(); 
 		startpoint = userLocation;
 		lahin = [];
 	}
@@ -190,7 +199,9 @@ function button() //etsii lähimmän ravintolan
 	x = parseFloat(lahin[indeksi].x);
 	y = parseFloat(lahin[indeksi].y);
 	var waypoints = new nokia.maps.routing.WaypointParameterList();
-    waypoints.addCoordinate(startpoint);
+
+    waypoints.addCoordinate(startpoint); 
+   
     waypoints.addCoordinate(new nokia.maps.geo.Coordinate(y,x));
     router.calculateRoute(waypoints, modes);
 	document.getElementById("nappiseuraava").disabled = false;
@@ -238,18 +249,18 @@ function button2() //etsii seuraavaksi lähimmän ravintolan
     
 };
 
-var userLocation;
 
 function button3()
 {
 	
 	map.objects.clear();
 	markers();
+    
 	//luodaan  ravintolat markkerit uudestaan hävitettyjen tilalle
 	if (document.getElementById("searchbox-input").value!=="")
 	{
 		
-		showLocation();
+		customSearchBox.search();
 
 	}
 	else
@@ -292,9 +303,9 @@ function ravintola(id, etaisyys,x,y)
         this.x = x;
         this.y = y;
 	}
-//käyttäjän antaman paikan koordinaatit
-var coordinates = [];
-	
+
+	  
+    
 var customSearchBox = new nokia.places.widgets.SearchBox({
 			targetNode: "customSearchBox",
 			template: "customSearchBox",
@@ -305,23 +316,19 @@ var customSearchBox = new nokia.places.widgets.SearchBox({
 				};
 			},
 			onResults: function (data) {
+                if(SijaintiMarker) {
+                    map.objects.remove(SijaintiMarker);
+                }
 				locations = data.results ? data.results.items : [data.location];
 				coordinates = [locations[0].position.latitude, locations[0].position.longitude];
 				userLocation = new nokia.maps.geo.Coordinate(coordinates[0], coordinates[1]);
 				map.setCenter(userLocation);
-				var SijaintiMarker = new nokia.maps.map.StandardMarker(map.center, {brush: "#FF0000"});
+				SijaintiMarker = new nokia.maps.map.StandardMarker(map.center, {brush: "#FF0000"});
 				map.setZoomLevel(15);
 				map.objects.add(SijaintiMarker);
 			}
 });    
-  
-function showLocation () {
-	map.setCenter(userLocation);
-	var SijaintiMarker = new nokia.maps.map.StandardMarker(map.center, {brush: "#FF0000"});
-	map.setZoomLevel(15);
-	map.objects.add(SijaintiMarker);
-	infoBubbles.closeAll();
-};
+
 
 //infobubblen luonti -funktio
 function infobubbles(nim, osoit, kunt, webosoit, rss, x_bub, y_bub)
