@@ -252,7 +252,7 @@ function button2() //etsii seuraavaksi lähimmän ravintolan
 
 function button3()
 {
-	
+	infoBubbles.closeAll();
 	map.objects.clear();
 	markers();
     
