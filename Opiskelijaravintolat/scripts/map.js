@@ -340,6 +340,7 @@ var customSearchBox = new nokia.places.widgets.SearchBox({
 				{
 					mapRoute.destroy();	
 				}
+                document.getElementById("nappiseuraava").disabled = true;
 			}
 });    
 
