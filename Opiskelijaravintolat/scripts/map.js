@@ -164,7 +164,11 @@ var indeksi = 0;
 
 function button() //etsii lähimmän ravintolan
 {
-	
+	infoBubbles.closeAll();
+	if(SijaintiMarker) {
+		map.objects.remove(SijaintiMarker);
+	}				
+		
 	var startpoint;
 	//tarkistetaan käytetäänkö geolocation vai käyttäjän antamaa sijaintia
 	if (document.getElementById("searchbox-input").value=="")
@@ -194,6 +198,8 @@ function button() //etsii lähimmän ravintolan
 	{
 		return a.etaisyys - b.etaisyys;
 	})
+	SijaintiMarker = new nokia.maps.map.StandardMarker(startpoint, standardMarkerProps[1]);
+	map.objects.add(SijaintiMarker);
 	//valitaan lähin ravintola
 	indeksi = 0;
 	x = parseFloat(lahin[indeksi].x);
@@ -252,20 +258,28 @@ function button2() //etsii seuraavaksi lähimmän ravintolan
 
 function button3()
 {
-	if (document.getElementById("searchbox-input").value!=="")
+	infoBubbles.closeAll();				
+	if (mapRoute !==0)
 	{
-		
-		customSearchBox.search();
+		mapRoute.destroy();	
+	}	
+	if(SijaintiMarker)
+	{
+		map.objects.remove(SijaintiMarker);
+	}
+		if (document.getElementById("searchbox-input").value!=="")
+		{
+			customSearchBox.search();
 
-	}
-	else
-	{
-		map.setCenter(Location);
-		var Marker = new nokia.maps.map.StandardMarker(map.center, standardMarkerProps[1]);
-		
-		map.setZoomLevel(15);
-		map.objects.add(Marker);
-	}
+		}
+		else
+		{
+			map.setCenter(Location);
+			SijaintiMarker = new nokia.maps.map.StandardMarker(map.center, standardMarkerProps[1]);
+			
+			map.setZoomLevel(15);
+			map.objects.add(SijaintiMarker);
+		}
 	document.getElementById("nappiseuraava").disabled = true;	
 	
 };
