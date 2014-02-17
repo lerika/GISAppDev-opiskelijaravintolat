@@ -71,6 +71,11 @@
     padding: 0;
     margin: 0;
     border: 1px solid #4C1A1A;
+    background-color:rgb(213,170,198);
+}
+#btntbl td.lighttd
+{
+    background-color:rgb(228,208,234);
 }
 .main-search {
 			background-color:rgb(228,208,234);

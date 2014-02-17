@@ -7,7 +7,7 @@ $this->pageTitle=Yii::app()->name;
 <div id="mapContainer">
 </div>
 <div id="menuDialog" title="Menu"></div>
-<div id="infoDialog" title="Menu">
+<div id="infoDialog" title="Käyttäjätestaus">
     <p>Palvelu etsii omasta sijainnistasi tai antamastasi osoitteesta 2 km säteellä sijaitsevat opiskelijaravintolat.<br/>
     Ole hyvä ja <a href="https://docs.google.com/forms/d/1Du5x12R6Mv0JxK5y94mEWLHsh2R7wUOmgOdD8CEx1N4/viewform" target="_blank">anna testipalautetta palvelusta</a></p>
 </div>
@@ -22,7 +22,7 @@ $this->pageTitle=Yii::app()->name;
 		</td>
 	</tr>
 	<tr>
-		<td>
+		<td class="lighttd">
 			<div id="customSearchBox" class="main-search">
 				<div module="SearchBox">
 					<input id="searchbox-input" rel="searchbox-input" class="main-search" type="text" placeholder="Oma sijainti" value=""/>
