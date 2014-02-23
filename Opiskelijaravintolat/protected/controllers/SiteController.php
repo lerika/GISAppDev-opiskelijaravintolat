@@ -102,7 +102,7 @@ class SiteController extends Controller
                 $doc_new->appendChild($newnode);
             }
         } else {
-            //
+            
             if ($wday == 1)
                 $d = $xml->xpath("//item[./*[contains(text(), 'Maanantai')] or ./*[contains(text(), 'maanantai')]]/description");
             else if ($wday == 2)
@@ -116,9 +116,15 @@ class SiteController extends Controller
             else {
                 if ($wday == 6) {
                     $d = $xml->xpath("//item[./*[contains(text(), 'Lauantai')] or ./*[contains(text(), 'lauantai')]]/description");
+                    if (count($d) == 0) {
+                        $node = $doc_new->createElement("div", "Ei ruokaa lauantaisin.");
+                        $doc_new->appendChild($node);
+                        echo $doc_new->saveHTML();
+                        Yii::app()->end();
+                    }
                 }
-                if (count($d) == 0 or $wday != 6) {
-                    $node = $doc_new->createElement("div", "Ei ruokalistaa saatavilla.");
+                else {
+                    $node = $doc_new->createElement("div", "Ei ruokaa sunnuntaisin.");
                     $doc_new->appendChild($node);
                     echo $doc_new->saveHTML();
                     Yii::app()->end();
