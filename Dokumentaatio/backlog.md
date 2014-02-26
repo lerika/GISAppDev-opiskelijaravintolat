@@ -1,0 +1,92 @@
+Product backlog:
+
+Kehitysympäristön valinta
+Kehitysympäristön asentaminen
+Karttapalvelun valinta
+Julkaisupalvelimen valinta
+Applikaation ensimmäisen version julkaisu
+Käyttäjän sijainti -funktio
+Reitin haku -funktio
+Geocoding -funktio
+Tietokannan asentaminen
+Ravintoloiden lisääminen tietokantaan
+Lähimmän ravintolan etsimisfunktio
+Käyttöliittymän suunnittelu
+Käyttöliittymän toteuttaminen
+Käyttäjäpalautteen suunnittelu
+Käyttäjäpalautemahdollisuuden toteuttaminen 
+Koekäytön suunnittelu
+Koekäytön toteuttaminen
+Kartan näyttämisen toteuttaminen
+Ravintoloiden ruokalistojen näyttäminen
+Ravintoloiden aikataulujen näyttäminen
+Ravintoloiden haku tietokannasta
+Ravintolan sijainnin siirtäminen palvelinpuolelta käyttäjäpuolelle
+Käyttäjän sijainnin siirtäminen käyttäjäpuolelta palvelinpuolelle
+Optimointi eri käyttölaitteille
+Käyttäjäkertomukset
+
+
+Scrum 0/1:
+
+Kehitysympäristön valinta x 
+Kehitysympäristön asentaminen x 
+Karttapalvelun valinta x 
+
+Scrum 1/2:
+
+Käyttäjän sijainti -funktio x
+Reitin haku -funktio x 
+Julkaisupalvelimen valinta x 
+Geocoding -funktio ->
+Applikaation ensimmäinen version julkaisu x
+Tietokannan asentaminen x 
+Kartan näyttämisen toteuttaminen x
+
+Scrum 2/3:
+
+Ravintoloiden lisääminen tietokantaan x 
+Käyttöliittymän suunnittelu x 
+Käyttäjäkertomukset x 
+Lähimmän ravintolan etsimisfunktio x
+
+Scrum 3/4
+
+Käyttöliittymän toteuttaminen x
+Ravintola-markerit x
+Tietokannasta spatiaalinen x
+-> Geocoding -funktio x
+
+Scrum 4/5
+
+Ravintoloiden ruokalistojen näyttäminen /->
+Ravintoloiden tietojen näyttäminen x
+Käyttäjäpalautteen suunnittelu x
+Koekäytön suunnittelu x
+Palvelun vienti lopulliselle julkaisupalvelimelle ->
+Käyttöliittymän testaus ja viimeistely ->
+Geocoding-funktion parantelu /->
+
+Scrum 5/6
+
+Ravintoloiden ruokalistojen näyttäminen x
+Käyttäjätestaus
+Palvelun vienti lopulliselle julkaisupalvelimelle x
+-> Käyttöliittymän testaus ja viimeistely 
+-> Geocoding-funktion parantelu x
+ravintoloiden bubble auki myös klikkaamalla x
+oman sijainnin täppi eri värillä kuin ravintolat x
+osoitehakuun osumaksi aina ensimmäinen x
+
+Scrum 6/7
+Loput ravintolat tietokantaan x
+~~Ravintoloiden arvostelu ja värikoodatut markerit~~ 
+Markkereiden tuunaus
+Käyttäjätestauksen kommenttien käsittely
+Spatiaalinen kysely vain lähimpien ravintoloiden haulle sivu ladattaessa
+
+Scrum 7/8
+Käyttäjätestauksen hyvien parannusehdotusten toteutus
+Dokumentoinnin aloitus
+Tietoa palvelusta/palaute -toiminto
+Ravintoloiden lisäys-/poisto-/muutosehdotustoiminto
