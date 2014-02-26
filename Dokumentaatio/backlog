@@ -79,7 +79,14 @@ oman sijainnin täppi eri värillä kuin ravintolat x
 osoitehakuun osumaksi aina ensimmäinen x
 
 Scrum 6/7
-Loput ravintolat tietokantaan
-Ravintoloiden arvostelu ja värikoodatut markerit
+Loput ravintolat tietokantaan x
+~~Ravintoloiden arvostelu ja värikoodatut markerit~~ 
+Markkereiden tuunaus
 Käyttäjätestauksen kommenttien käsittely
 Spatiaalinen kysely vain lähimpien ravintoloiden haulle sivu ladattaessa
+
+Scrum 7/8
+Käyttäjätestauksen hyvien parannusehdotusten toteutus
+Dokumentoinnin aloitus
+Tietoa palvelusta/palaute -toiminto
+Ravintoloiden lisäys-/poisto-/muutosehdotustoiminto
