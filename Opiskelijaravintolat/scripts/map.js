@@ -373,7 +373,7 @@ function infobubbles(nim, osoit, kunt, webosoit, rss, x_bub, y_bub)
 		'<p><a href=' +
 		linkki + '>' +
 		'RUOKALISTA</a></p></div>';
-	bubble = infoBubbles.openBubble(htmlStr, coord, "", true);  
+	bubble = infoBubbles.openBubble(htmlStr, coord, "", false);  
 };
     
 function getInfo(id1) {
