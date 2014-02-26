@@ -28,9 +28,9 @@ var standardMarkerProps = [
 var map = new nokia.maps.map.Display(mapContainer, {
     // Alkusijanti ja zoom level
     center: [60.1808, 24.9375],
-    minZoomLevel: 9,
+    minZoomLevel: 12,
 	maxZoomLevel: 17,
-	zoomLevel: 9,
+	zoomLevel: 13,
     components: [
         //infoBubble
 		infoBubbles,
