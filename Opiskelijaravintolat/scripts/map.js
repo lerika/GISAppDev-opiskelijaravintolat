@@ -2,8 +2,8 @@
 nokia.Settings.set("app_id", "pDOGtkxwxdAkuQCiL7e4"); 
 nokia.Settings.set("app_code", "cyPj3vIrgjsZy9sgWqga-g");
 // App-tiedot
-var Location = new nokia.maps.geo.Coordinate(0, 0);
-var userLocation = new nokia.maps.geo.Coordinate(0, 0);
+var Location = new nokia.maps.geo.Coordinate(60.1808, 24.9375);
+var userLocation = new nokia.maps.geo.Coordinate(60.1808, 24.9375);
 
 //käyttäjän antaman paikan koordinaatit
 var coordinates = [];

@@ -32,6 +32,7 @@ class SiteController extends Controller
         $rest = Yii::app()->db->createCommand()
         ->select('id, st_x(geometria) as xkoord, st_y(geometria) as ykoord')
         ->from('ravintolat u')
+        ->where('geometria IS NOT NULL')
         ->queryAll();
         
         
