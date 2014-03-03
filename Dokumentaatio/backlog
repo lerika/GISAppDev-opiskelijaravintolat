@@ -70,7 +70,7 @@ Geocoding-funktion parantelu /->
 Scrum 5/6
 
 Ravintoloiden ruokalistojen näyttäminen x
-Käyttäjätestaus
+-> Käyttäjätestaus ->
 Palvelun vienti lopulliselle julkaisupalvelimelle x
 -> Käyttöliittymän testaus ja viimeistely 
 -> Geocoding-funktion parantelu x
@@ -79,6 +79,7 @@ oman sijainnin täppi eri värillä kuin ravintolat x
 osoitehakuun osumaksi aina ensimmäinen x
 
 Scrum 6/7
+-> Käyttäjätestaus x
 Loput ravintolat tietokantaan x
 Markkereiden tuunaus
 Käyttäjätestauksen kommenttien käsittely x
