@@ -114,6 +114,7 @@ var modes = [{
     trafficMode: "default"
 }];
 
+
 //Markkerin kartalle lisäys -funktio
 function addMarkerToMap(x, y, id) 
 {
@@ -121,11 +122,12 @@ function addMarkerToMap(x, y, id)
 	var x = x;
 	var y = y;
 		
-		var ravintolamarker = new nokia.maps.map.StandardMarker(
+		var ravintolamarker = new nokia.maps.map.Marker(
 			[y,x],
 			{
 				$click : 'getInfo(myValue);',
-				brush: {color: "#0000FF"}
+				icon: "images/1393904341_97_m4.png",
+				anchor: new nokia.maps.util.Point(18, 18)
 			}
 			)
 		;
