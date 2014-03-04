@@ -132,7 +132,7 @@ function addMarkerToMap(x, y, id)
 			[y,x],
 			{
 				$click : 'getInfo(myValue);',
-				icon: "images/1393904341_97_pisara_proj_4_kuva_pien2.png",
+				icon: "images/1393904341_97_pisara_proj_6_pien.png",
 				anchor: new nokia.maps.util.Point(14, 36)
 			}
 			)
