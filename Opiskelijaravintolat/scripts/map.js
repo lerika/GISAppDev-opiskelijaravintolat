@@ -4,6 +4,7 @@ nokia.Settings.set("app_code", "cyPj3vIrgjsZy9sgWqga-g");
 // App-tiedot
 var Location = new nokia.maps.geo.Coordinate(60.1808, 24.9375);
 var userLocation = new nokia.maps.geo.Coordinate(60.1808, 24.9375);
+var envelope = [24.6375, 59.8810];
 
 //käyttäjän antaman paikan koordinaatit
 var coordinates = [];
@@ -64,8 +65,13 @@ if (nokia.maps.positioning.Manager) {
                 var coords = position.coords; // koordinaatit
                     SijaintiMarker = new nokia.maps.map.StandardMarker(coords, standardMarkerProps[1]); //marker
 					
-					map.objects.add(SijaintiMarker);
+					
 					Location = position.coords;
+                    if ((Math.abs(Location.longitude - envelope[0]) > 0.2) || (Math.abs(Location.latitude - envelope[1]) > 0.2)) {
+                        map.objects.clear();
+                        fetchNearest(Location.longitude, Location.latitude);
+                    }
+                    map.objects.add(SijaintiMarker);
 					map.setCenter(coords);
 					map.setZoomLevel(15);
 					
@@ -189,34 +195,36 @@ function button() //etsii lähimmän ravintolan
 	{
 		mapRoute.destroy();
 	}
-	
-	//luodaan taulu jossa etäisyydet ravintoloihin
-	for (var i = 0; i < ravintolat.length; i++)
-		{
-		lista(ravintolat[i]["id"], parseFloat(ravintolat[i]["xkoord"]), parseFloat(ravintolat[i]["ykoord"]));
-		}
-	//järjestetään taulu että lähin on ensimmäinen
-	lahin.sort(function(a,b)
-	{
-		return a.etaisyys - b.etaisyys;
-	})
-	SijaintiMarker = new nokia.maps.map.StandardMarker(startpoint, standardMarkerProps[1]);
-	map.objects.add(SijaintiMarker);
-	//valitaan lähin ravintola
-	indeksi = 0;
-	x = parseFloat(lahin[indeksi].x);
-	y = parseFloat(lahin[indeksi].y);
-	var waypoints = new nokia.maps.routing.WaypointParameterList();
-	waypoints.clear();
-    waypoints.addCoordinate(startpoint); 
-   
-    waypoints.addCoordinate(new nokia.maps.geo.Coordinate(y,x));
-    router.calculateRoute(waypoints, modes);
-	document.getElementById("nappiseuraava").disabled = false;
-    
-    var id1 = lahin[indeksi].id;
-    getInfo(id1);
-    
+	if (ravintolat.length > 0) {
+        //luodaan taulu jossa etäisyydet ravintoloihin
+        for (var i = 0; i < ravintolat.length; i++)
+            {
+            lista(ravintolat[i]["id"], parseFloat(ravintolat[i]["xkoord"]), parseFloat(ravintolat[i]["ykoord"]));
+            }
+        //järjestetään taulu että lähin on ensimmäinen
+        lahin.sort(function(a,b)
+        {
+            return a.etaisyys - b.etaisyys;
+        })
+        SijaintiMarker = new nokia.maps.map.StandardMarker(startpoint, standardMarkerProps[1]);
+        map.objects.add(SijaintiMarker);
+        //valitaan lähin ravintola
+        indeksi = 0;
+        x = parseFloat(lahin[indeksi].x);
+        y = parseFloat(lahin[indeksi].y);
+        var waypoints = new nokia.maps.routing.WaypointParameterList();
+        waypoints.clear();
+        waypoints.addCoordinate(startpoint); 
+       
+        waypoints.addCoordinate(new nokia.maps.geo.Coordinate(y,x));
+        router.calculateRoute(waypoints, modes);
+        document.getElementById("nappiseuraava").disabled = false;
+        
+        var id1 = lahin[indeksi].id;
+        getInfo(id1);
+    } else {
+        alert("Ei ravintoloita lähimailla. :(");
+    }
 };
 
 function button2() //etsii seuraavaksi lähimmän ravintolan
@@ -277,6 +285,12 @@ function button3()
 		else
 		{
 			map.setCenter(Location);
+            
+            if ((Math.abs(Location.longitude - envelope[0]) > 0.2) || (Math.abs(Location.latitude - envelope[1]) > 0.2)) {
+                map.objects.clear();
+                fetchNearest(Location.longitude, Location.latitude);
+            }
+            
 			SijaintiMarker = new nokia.maps.map.StandardMarker(map.center, standardMarkerProps[1]);
 			
 			map.setZoomLevel(15);
@@ -334,14 +348,19 @@ var customSearchBox = new nokia.places.widgets.SearchBox({
 				coordinates = [locations[0].position.latitude, locations[0].position.longitude];
 				userLocation = new nokia.maps.geo.Coordinate(coordinates[0], coordinates[1]);
 				map.setCenter(userLocation);
-				SijaintiMarker = new nokia.maps.map.StandardMarker(map.center, {brush: "#FF0000"});
-				map.setZoomLevel(15);
-				map.objects.add(SijaintiMarker);
-				infoBubbles.closeAll();				
-				if (mapRoute !==0)
+                if (mapRoute !==0)
 				{
 					mapRoute.destroy();	
 				}
+                infoBubbles.closeAll();	
+                if ((Math.abs(userLocation.longitude - envelope[0]) > 0.2) || (Math.abs(userLocation.latitude - envelope[1]) > 0.2)) {
+                        map.objects.clear();
+                        fetchNearest(userLocation.longitude, userLocation.latitude);
+                }
+				SijaintiMarker = new nokia.maps.map.StandardMarker(map.center, {brush: "#FF0000"});
+				map.setZoomLevel(15);
+				map.objects.add(SijaintiMarker);
+							
                 document.getElementById("nappiseuraava").disabled = true;
 			}
 });    
@@ -414,4 +433,22 @@ function getMenu(rss, www) {
 
 }
 
-$("#infoDialog").dialog();
+function fetchNearest(currentX,currentY) {
+// fetches restaurants within specific range from the database
+    $.ajax({
+      url: "index.php/site/getnearest?x=" + currentX + "&y=" + currentY,
+      contentType: "application/json; charset=utf-8",
+      dataType: "json",
+      success: function(response, status){
+            //alert(response[0]["xkoord"]);
+            ravintolat = [];
+            lahin = [];
+            ravintolat = response;
+           markers();
+      },
+      error: function error(jqXHR, textStatus, errorThrown) {
+            alert("Ravintoloiden haku epäonnistui.");
+      }
+    });
+
+}

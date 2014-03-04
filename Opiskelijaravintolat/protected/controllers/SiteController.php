@@ -29,10 +29,11 @@ class SiteController extends Controller
 	{
 		// renders the view file 'protected/views/site/index.php'
 		// using the default layout 'protected/views/layouts/main.php'
+        // starting point helsinki center so fetch restaurants from helsinki region 
         $rest = Yii::app()->db->createCommand()
-        ->select('id, st_x(geometria) as xkoord, st_y(geometria) as ykoord')
-        ->from('ravintolat u')
-        ->where('geometria IS NOT NULL')
+        ->select("id, st_x(geometria) as xkoord, st_y(geometria) as ykoord")
+        ->from("ravintolat")
+        ->where("ST_Intersects(ST_Envelope(ST_GeomFromText('LINESTRING(24.6919308 60.1612053, 25.0573902 60.3306313)', 4326)), geometria)")
         ->queryAll();
         
         
@@ -54,6 +55,34 @@ class SiteController extends Controller
         header('Content-type: application/json');
 
         echo json_encode($restinfo);
+
+        Yii::app()->end();
+	}
+    
+    //fetches nearby restaurants
+    public function actionGetnearest($x, $y)
+	{
+        
+        $minXnum = $x - 0.3;
+        $minX = (string) $minXnum;
+        $minYnum = $y - 0.3;
+        $minY = (string) $minYnum;
+        $maxXnum = $x + 0.3;
+        $maxX = (string) $maxXnum;
+        $maxYnum = $y + 0.3;
+        $maxY = (string) $maxYnum;
+        
+        $whereclause = "ST_Intersects(ST_Envelope(ST_GeomFromText('LINESTRING(".$minX." ".$minY.", ".$maxX." ".$maxY.")', 4326)), geometria)";
+        
+        $rest = Yii::app()->db->createCommand()
+        ->select('id, st_x(geometria) as xkoord, st_y(geometria) as ykoord')
+        ->from('ravintolat u')
+        ->where($whereclause)
+        ->queryAll();
+                
+        header('Content-type: application/json');
+
+        echo json_encode($rest);
 
         Yii::app()->end();
 	}
