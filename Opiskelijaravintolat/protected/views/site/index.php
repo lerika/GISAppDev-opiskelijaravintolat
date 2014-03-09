@@ -11,10 +11,10 @@ $this->pageTitle=Yii::app()->name;
 
 	<tr>
 		<td>
-			<input type="button" value="Etsi lähin" onclick="button()" id="nappilahin"/>
+			<input type="button" value="Etsi lähin" onclick="button()" id="nappilahin" title="Etsi lähin ravintola" />
 		</td>
 		<td>
-			<input type="button" value="Seuraava" onclick="button2()" id="nappiseuraava"/>
+			<input type="button" value="Seuraava" onclick="button2()" id="nappiseuraava" title="Etsi seuraavaksi lähin ravintola" />
 		</td>
 	</tr>
 	<tr>
@@ -27,7 +27,7 @@ $this->pageTitle=Yii::app()->name;
 			</div>
 		</td>
 		<td>
-			<input type="button" value="Näytä sijainti" onclick="button3()" id="nappinayta"/> 
+			<input type="button" value="Näytä sijainti" onclick="button3()" id="nappinayta" title="Näytä sijainti kartalla" /> 
 		</td>
 	</tr>
 
