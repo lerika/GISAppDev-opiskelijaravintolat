@@ -367,7 +367,7 @@ var customSearchBox = new nokia.places.widgets.SearchBox({
 
 
 //infobubblen luonti -funktio
-function infobubbles(nim, osoit, kunt, webosoit, rss, x_bub, y_bub)
+function infobubbles(id1, nim, osoit, kunt, webosoit, rss, x_bub, y_bub)
 {
     var x = parseFloat(x_bub)
 	var y = parseFloat(y_bub)
@@ -390,10 +390,11 @@ function infobubbles(nim, osoit, kunt, webosoit, rss, x_bub, y_bub)
 		osoit +
 		' ' +
 		kunt + 
-		'</p>' +
-		'<p><a href=' +
-		linkki + '>' +
-		'RUOKALISTA</a></p></div>';
+		'</p>';
+        if (!(rss == 3)) {
+            htmlStr += '<p><a href=' + linkki + '>' + 'RUOKALISTA</a></p>';
+        }
+        htmlStr += '<div><a href="javascript:void(0)" onClick="editRestaurant(' + id1 + ')" title="Muokkaa"><span id="edit" class="ui-icon ui-icon-pencil"></span></a></div></div>';
 	bubble = infoBubbles.openBubble(htmlStr, coord, "", false);  
 };
     
@@ -404,7 +405,7 @@ function getInfo(id1) {
       contentType: "application/json; charset=utf-8",
       dataType: "json",
       success: function(response, status){
-           infobubbles(response["nimi"], response["osoite"], response["kunta"], response["webosoite"], response["rss"], response["xkoord"], response["ykoord"]);	
+           infobubbles(id1, response["nimi"], response["osoite"], response["kunta"], response["webosoite"], response["rss"], response["xkoord"], response["ykoord"]);	
       },
       error: function error(jqXHR, textStatus, errorThrown) {
             alert("Ravintolan tietojen haku epäonnistui.");
@@ -451,4 +452,10 @@ function fetchNearest(currentX,currentY) {
       }
     });
 
+}
+
+function editRestaurant(id1) {
+    $("#editDialog").dialog();
+    //$("#editDialog").html();
+    //Not implemented yet
 }
