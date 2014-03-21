@@ -456,6 +456,6 @@ function fetchNearest(currentX,currentY) {
 
 function editRestaurant(id1) {
     $("#editDialog").dialog();
+    
     //$("#editDialog").html();
-    //Not implemented yet
 }

@@ -7,7 +7,15 @@ $this->pageTitle=Yii::app()->name;
 <div id="mapContainer">
 </div>
 <div id="menuDialog" title="Menu"></div>
-<div id="editDialog" title="Ehdota korjausta"></div>
+<div id="editDialog" title="Ehdota korjausta">
+<form>
+Nimi: <input type="text" name="firstname"><br/>
+Osoite: <input type="text" name="lastname"><br/>
+Kunta: <input type="text" name="lastname"><br/>
+www-osoite tai rss: <input type="text" name="lastname"><br/>
+<input type="submit" value="Ehdota"><br/><br/>
+Jos kyseistä ravintolaa ei ole enää olemassa<br/><a href="javascript:void(0)" onClick="removeRestaurant()" title="Ehdota poistoa"><span id="rem" class="ui-icon ui-icon-close"></span>Ehdota poistoa</a>
+</form></div>
 <table id="btntbl">
 
 	<tr>
