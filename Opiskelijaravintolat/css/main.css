@@ -115,4 +115,16 @@
 #rem {
     display:inline-block;
 }
+#editDialog
+{
+    display: none;
+}
+#hiddenId
+{
+    display: none;
+}
+label
+{
+    display: block;
+}
 

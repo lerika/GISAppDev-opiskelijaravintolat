@@ -36,10 +36,11 @@ class SiteController extends Controller
         ->where("ST_Intersects(ST_Envelope(ST_GeomFromText('LINESTRING(24.6919308 60.1612053, 25.0573902 60.3306313)', 4326)), geometria)")
         ->queryAll();
         
-        
+        $model = new EditForm;
        
 		$this->render('index', array(
         'restaurants'=>$rest,
+        'model'=>$model,
         ));
 	}
     
@@ -171,7 +172,57 @@ class SiteController extends Controller
         Yii::app()->end();
 	}
 
-
+    //Suggest removal
+    public function actionSugrem($rid)
+	{
+        $command = Yii::app()->db->createCommand();
+        $rem = $command->insert('Ehdotukset', array(
+                                'muutos_id'=>$rid,
+                                'muutos_status'=>0,
+                                ));
+        Yii::app()->end();
+    }
+    
+    //Suggest change
+    public function actionSugedit($eid)
+	{
+        
+        $model=new EditForm;
+    
+        if(isset($_POST['EditForm']))
+        {
+ 
+ 
+        $model->attributes=$_POST['EditForm'];
+        if($model->validate())
+        {
+        
+            $enimi = $_REQUEST["EditForm"]["muutos_nimi"];
+            $eosoite = $_REQUEST["EditForm"]["muutos_osoite"];
+            $ekunta = $_REQUEST["EditForm"]["muutos_kunta"];
+            $ewww = $_REQUEST["EditForm"]["muutos_www"];
+            
+           $command = Yii::app()->db->createCommand();
+           $edit = $command->insert('Ehdotukset', array(
+                                    'muutos_id'=>$eid,
+                                    'muutos_status'=>1,
+                                    'muutos_nimi'=>$enimi,
+                                    'muutos_osoite'=>$eosoite,
+                                    'muutos_kunta'=>$ekunta,
+                                    'muutos_www'=>$ewww,
+           ));
+           echo utf8_encode("Muutosehdotus lähetetty.");
+           //print_r($_REQUEST);
+           //echo $_REQUEST["EditForm"]["muutos_nimi"];
+           Yii::app()->end();
+ 
+            }
+        }
+        echo utf8_encode("Muutosehdotus epäonnistui");
+        Yii::app()->end();
+        
+    }
+    
 	/**
 	 * This is the action to handle external exceptions.
 	 */

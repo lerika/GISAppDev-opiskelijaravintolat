@@ -19,3 +19,20 @@ CREATE TABLE ravintolat
 WITH (
   OIDS=FALSE
 );
+
+-- Table: "Ehdotukset"
+
+-- DROP TABLE "Ehdotukset";
+
+CREATE TABLE "Ehdotukset"
+(
+  muutos_id integer NOT NULL,
+  muutos_nimi character varying(50),
+  muutos_osoite character varying(50),
+  muutos_kunta character varying(50),
+  muutos_www character varying(255),
+  muutos_status integer
+)
+WITH (
+  OIDS=FALSE
+);
