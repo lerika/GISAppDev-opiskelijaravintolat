@@ -67,7 +67,7 @@ INSERT INTO ravintolat VALUES (56, 'Kirurginen sairaala', 'Kasarmikatu 11', 'Hel
 INSERT INTO ravintolat VALUES (57, 'Malmica', 'Hietakummuntie 1', 'Helsinki', '0101000020E6100000D04B20802F043940F6245580941F4E40', 'http://www.amica.fi/malmica', 0);
 INSERT INTO ravintolat VALUES (58, 'Meccala', 'Hämeentie 135', 'Helsinki', '0101000020E6100000248337FF0AFA3840CD3F55E0BF1A4E40', 'http://www.amica.fi/meccala', 0);
 INSERT INTO ravintolat VALUES (59, 'Meilahden lounasravintola', 'Stenbäckinkatu 9', 'Helsinki', '0101000020E6100000D65D34BFF5E83840634BEA5FED174E40', 'http://www.hus.fi/hus-tietoa/liikelaitokset-ja-tukipalvelut/ravioli/lounasravintolat/Sivut/Meilahden-lounasravintola.aspx', 0);
-INSERT INTO ravintolat VALUES (60, 'Musiikkitalo', 'Mannerheimintie 13', 'Helsinki', '0101000020E6100000D92C4D00B4EE3840FA3CEBBF73164E40', 'http://www.tapahtumamaailma.fi/musiikkitalon-lounas', 0);
+INSERT INTO ravintolat VALUES (60, 'Musiikkitalo', 'Musiikkitalo', 'Helsinki', '0101000020E61000009F20B1DD3D164E40DF18028063EF3840', 'http://www.tapahtumamaailma.fi/musiikkitalon-lounas', 0);
 INSERT INTO ravintolat VALUES (61, 'Chydenia', 'Runeberginkatu 22', 'Helsinki', '0101000020E610000056CE8360FAEB38403AFCDA9F30164E40', 'http://www.amica.fi/chydenia', 0);
 INSERT INTO ravintolat VALUES (62, 'Kipsari', 'Hämeentie 135', 'Helsinki', '0101000020E6100000248337FF0AFA3840CD3F55E0BF1A4E40', 'http://kipsari.com/', 0);
 INSERT INTO ravintolat VALUES (272, 'Ravintola Savotta', 'Pöykkölä, Ict-Keskus, Laajakaista 3', 'Rovaniemi', '0101000020E61000004B1FBAA0BEBD39401C8EF85F789E5040', 'http://www.amica.fi', 3);
