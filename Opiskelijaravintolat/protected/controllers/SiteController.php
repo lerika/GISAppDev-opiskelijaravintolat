@@ -197,10 +197,10 @@ class SiteController extends Controller
         if($model->validate())
         {
         
-            $enimi = $_REQUEST["EditForm"]["muutos_nimi"];
-            $eosoite = $_REQUEST["EditForm"]["muutos_osoite"];
-            $ekunta = $_REQUEST["EditForm"]["muutos_kunta"];
-            $ewww = $_REQUEST["EditForm"]["muutos_www"];
+            $enimi = $model->muutos_nimi;
+            $eosoite = $model->muutos_osoite;
+            $ekunta = $model->muutos_kunta;
+            $ewww = $model->muutos_www;
             
            $command = Yii::app()->db->createCommand();
            $edit = $command->insert('Ehdotukset', array(

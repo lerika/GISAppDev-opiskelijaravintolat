@@ -391,7 +391,9 @@ function infobubbles(id1, nim, osoit, kunt, webosoit, rss, x_bub, y_bub)
 		' ' +
 		kunt + 
 		'</p>';
-        if (!(rss == 3)) {
+        if (rss == 0) {
+            htmlStr += '<p><a href=' + linkki + '>' + 'RUOKALISTA <br/>&gt; ravintolan sivuille</a></p>';
+        } else if (!(rss == 3)) {
             htmlStr += '<p><a href=' + linkki + '>' + 'RUOKALISTA</a></p>';
         }
         var nim1 = "'" + nim + "'";
@@ -470,26 +472,6 @@ function editRestaurant(id1,nimi1,osoite1,kunta1,www1) {
     
 }
 
-/*function submitEdit() {
-
-    var muutos_id = $("#hiddenId").val();
-    var data=$("#edit-restaurant-form").serialize();
-    
-    $.ajax({
-        type: "POST",
-        url: "index.php/site/sugedit?eid=" + muutos_id,
-        data: data,
-        dataType: "html",
-        success: function(response, status){
-            $("#editDialog").dialog('close');
-            $("#responseDialog").dialog();
-            $("#responseDialog").html(response);
-        },
-        error: function error(jqXHR, textStatus, errorThrown) {
-            alert("Muutosehdotus epäonnistui.");
-        }
-    });
-}*/
 
 $(function() {
   $('#edit-restaurant-form').submit(function(event) {
@@ -511,6 +493,7 @@ $(function() {
       alert("Muutosehdotus epäonnistui.");
     });
     event.preventDefault(); // Prevent the form from submitting via the browser.
+    $("#EditForm :input").val("");
   });
 });
 
@@ -532,4 +515,3 @@ function removeRestaurant() {
         }
     });
 }
-
