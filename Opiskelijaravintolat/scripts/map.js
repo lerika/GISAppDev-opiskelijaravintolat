@@ -529,7 +529,7 @@ function editRestaurant(id1,nimi1,osoite1,kunta1,www1) {
     
     //populate form fields
     $("#hiddenId").val(id1);
-    $("#EditForm_muutos_nimi").val(nimi1);
+    $('#EditForm_muutos_nimi').val(nimi1);
     $("#EditForm_muutos_osoite").val(osoite1);
     $("#EditForm_muutos_kunta").val(kunta1);
     $("#EditForm_muutos_www").val(www1);
@@ -569,7 +569,10 @@ function addRestaurant() {
     $("#editDialog").dialog('option', 'title', 'Ehdota uutta ravintolaa');
     $("#notExists").hide();
     $("#editDialog").show();
-    $("#EditForm :input").val("");
+    $('#EditForm_muutos_nimi').val("");
+    $("#EditForm_muutos_osoite").val("");
+    $("#EditForm_muutos_kunta").val("");
+    $("#EditForm_muutos_www").val("");
 }
 
 function removeRestaurant() {

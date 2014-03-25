@@ -11,7 +11,6 @@ $this->pageTitle=Yii::app()->name;
 <?php echo $this->renderPartial('_form', array('model'=>$model)); ?>
 <div id="notExists"><br/><br/>Jos kyseistä ravintolaa ei ole enää olemassa<br/><a href="javascript:void(0)" onClick="removeRestaurant()" title="Ehdota poistoa"><span id="rem" class="ui-icon ui-icon-close"></span>Ehdota poistoa</a>
 </div></div>
-<div id="addDialog"><?php echo $this->renderPartial('_form', array('model'=>$model)); ?></div>
 <div id="responseDialog"></div>
 <table id="btntbl">
 
