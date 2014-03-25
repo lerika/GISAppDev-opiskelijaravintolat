@@ -37,12 +37,13 @@ class SiteController extends Controller
         ->queryAll();
         
         $model = new EditForm;
-       
+        
 		$this->render('index', array(
         'restaurants'=>$rest,
         'model'=>$model,
         ));
 	}
+    
     
     public function actionGetdata($id)
 	{
@@ -201,24 +202,28 @@ class SiteController extends Controller
             $eosoite = $model->muutos_osoite;
             $ekunta = $model->muutos_kunta;
             $ewww = $model->muutos_www;
-            
+            if (!($eid == 0)) {
+                $stat = 1;
+            } else {
+                $stat = 2;
+            }
            $command = Yii::app()->db->createCommand();
            $edit = $command->insert('Ehdotukset', array(
                                     'muutos_id'=>$eid,
-                                    'muutos_status'=>1,
+                                    'muutos_status'=>$stat,
                                     'muutos_nimi'=>$enimi,
                                     'muutos_osoite'=>$eosoite,
                                     'muutos_kunta'=>$ekunta,
                                     'muutos_www'=>$ewww,
            ));
-           echo utf8_encode("Muutosehdotus lähetetty.");
+           echo utf8_encode("Ehdotus lähetetty.");
            //print_r($_REQUEST);
            //echo $_REQUEST["EditForm"]["muutos_nimi"];
            Yii::app()->end();
  
             }
         }
-        echo utf8_encode("Muutosehdotus epäonnistui");
+        echo utf8_encode("Ehdotus epäonnistui");
         Yii::app()->end();
         
     }

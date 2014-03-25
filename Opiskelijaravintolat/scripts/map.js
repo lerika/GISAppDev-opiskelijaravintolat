@@ -5,6 +5,7 @@ nokia.Settings.set("app_code", "cyPj3vIrgjsZy9sgWqga-g");
 var Location = new nokia.maps.geo.Coordinate(60.1808, 24.9375);
 var userLocation = new nokia.maps.geo.Coordinate(60.1808, 24.9375);
 var envelope = [24.6375, 59.8810];
+var reitin_pituus;
 
 //käyttäjän antaman paikan koordinaatit
 var coordinates = [];
@@ -108,6 +109,10 @@ var onRouteCalculated = function (observedRouter, key, value) {
 			//otetaan talteen reitin pituus sadan metrin tarkkuudella
 			reitin_pituus = routes[0].summary.distance;
 			reitin_pituus = Math.round(reitin_pituus/100)*100;
+            
+            var id1 = lahin[indeksi].id;
+            getInfo(id1);
+            
         } else if (value == "failed") {
             alert("Reitin haku epäonnistui. Yritä uudelleen");
         }
@@ -224,8 +229,7 @@ function button() //etsii lähimmän ravintolan
         router.calculateRoute(waypoints, modes);
         document.getElementById("nappiseuraava").disabled = false;
         
-        var id1 = lahin[indeksi].id;
-        getInfo(id1);
+        
     } else {
         alert("Ei ravintoloita lähimailla. :(");
     }
@@ -265,8 +269,6 @@ function button2() //etsii seuraavaksi lähimmän ravintolan
     waypoints.addCoordinate(new nokia.maps.geo.Coordinate(y,x));
     router.calculateRoute(waypoints, modes);
     
-    var id1 = lahin[indeksi].id;
-    getInfo(id1);
     
 };
 
@@ -521,6 +523,8 @@ function fetchNearest(currentX,currentY) {
 
 function editRestaurant(id1,nimi1,osoite1,kunta1,www1) {
     $("#editDialog").dialog();
+    $("#editDialog").dialog('option', 'title', 'Ehdota korjausta');
+    $("#notExists").show();
     $("#editDialog").show();
     
     //populate form fields
@@ -529,7 +533,7 @@ function editRestaurant(id1,nimi1,osoite1,kunta1,www1) {
     $("#EditForm_muutos_osoite").val(osoite1);
     $("#EditForm_muutos_kunta").val(kunta1);
     $("#EditForm_muutos_www").val(www1);
-    
+   
 }
 
 
@@ -537,6 +541,9 @@ $(function() {
   $('#edit-restaurant-form').submit(function(event) {
   
     var muutos_id = $("#hiddenId").val();
+    if (muutos_id == "") {
+        muutos_id = 0;
+    }
     var data=$("#edit-restaurant-form").serialize();
     var form = $(this);
     
@@ -553,12 +560,16 @@ $(function() {
       alert("Muutosehdotus epäonnistui.");
     });
     event.preventDefault(); // Prevent the form from submitting via the browser.
-    $("#EditForm :input").val("");
+    $("#hiddenId").val("");
   });
 });
 
 function addRestaurant() {
-    //empty form fields or use different dialog
+    $("#editDialog").dialog();
+    $("#editDialog").dialog('option', 'title', 'Ehdota uutta ravintolaa');
+    $("#notExists").hide();
+    $("#editDialog").show();
+    $("#EditForm :input").val("");
 }
 
 function removeRestaurant() {

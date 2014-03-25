@@ -7,11 +7,11 @@ $this->pageTitle=Yii::app()->name;
 <div id="mapContainer">
 </div>
 <div id="menuDialog" title="Menu"></div>
-<div id="editDialog" title="Ehdota korjausta">
+<div id="editDialog">
 <?php echo $this->renderPartial('_form', array('model'=>$model)); ?>
-<br/><br/>
-Jos kyseistä ravintolaa ei ole enää olemassa<br/><a href="javascript:void(0)" onClick="removeRestaurant()" title="Ehdota poistoa"><span id="rem" class="ui-icon ui-icon-close"></span>Ehdota poistoa</a>
-</div>
+<div id="notExists"><br/><br/>Jos kyseistä ravintolaa ei ole enää olemassa<br/><a href="javascript:void(0)" onClick="removeRestaurant()" title="Ehdota poistoa"><span id="rem" class="ui-icon ui-icon-close"></span>Ehdota poistoa</a>
+</div></div>
+<div id="addDialog"><?php echo $this->renderPartial('_form', array('model'=>$model)); ?></div>
 <div id="responseDialog"></div>
 <table id="btntbl">
 
@@ -38,6 +38,7 @@ Jos kyseistä ravintolaa ei ole enää olemassa<br/><a href="javascript:void(0)"
 	</tr>
 
 </table>
+<div id="addNew"><a href="javascript:void(0)" onClick="addRestaurant()" title="Lisää ravintola"><span class="ui-icon ui-icon-plus"></span></a></div>
 <script type="text/javascript" charset="UTF-8" src="http://js.cit.api.here.com/se/2.5.3/jsl.js?with=all"></script>
 <script type="text/javascript">
 
