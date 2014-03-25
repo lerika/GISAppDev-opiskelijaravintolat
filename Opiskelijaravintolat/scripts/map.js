@@ -1,4 +1,4 @@
-
+﻿
 nokia.Settings.set("app_id", "pDOGtkxwxdAkuQCiL7e4"); 
 nokia.Settings.set("app_code", "cyPj3vIrgjsZy9sgWqga-g");
 // App-tiedot
@@ -105,8 +105,9 @@ var onRouteCalculated = function (observedRouter, key, value) {
        
             map.zoomTo(mapRoute.getBoundingBox(), false, "default");
 			
-			//otetaan talteen reitin pituus
-			reitin_pituus = routes[0].summary.distance
+			//otetaan talteen reitin pituus sadan metrin tarkkuudella
+			reitin_pituus = routes[0].summary.distance;
+			reitin_pituus = Math.round(reitin_pituus/100)*100;
         } else if (value == "failed") {
             alert("Reitin haku epäonnistui. Yritä uudelleen");
         }
