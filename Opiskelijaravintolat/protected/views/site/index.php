@@ -37,7 +37,8 @@ $this->pageTitle=Yii::app()->name;
 	</tr>
 
 </table>
-<div id="addNew"><a href="javascript:void(0)" onClick="addRestaurant()" title="Lisää ravintola"><span class="ui-icon ui-icon-plus"></span></a></div>
+<div class="smicons" id="helpp"><a href="<?php echo Yii::app()->createUrl('/site/page',array('view'=>'help')); ?>" target="_blank" title="Käyttöohjeet"><span class="ui-icon ui-icon-help"></span></a></div>
+<div class="smicons"><a href="javascript:void(0)" onClick="addRestaurant()" title="Lisää ravintola"><span class="ui-icon ui-icon-plus"></span></a></div>
 <script type="text/javascript" charset="UTF-8" src="http://js.cit.api.here.com/se/2.5.3/jsl.js?with=all"></script>
 <script type="text/javascript">
 

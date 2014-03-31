@@ -407,7 +407,7 @@ function infobubbles(id1, nim, osoit, kunt, webosoit, rss, x_bub, y_bub)
         var osoit1 = "'" + osoit + "'";
         var kunt1 = "'" + kunt + "'";
         var webosoit1 = "'" + webosoit + "'";
-		htmlStr += '<p>' + "Etäisyys ravintolaan " + reitin_pituus  + " m." + '</p>';
+		htmlStr += '<p>' + "Etäisyys ravintolaan n. " + reitin_pituus  + " m." + '</p>';
         htmlStr += '<div><a href="javascript:void(0)" onClick="editRestaurant(' + id1 + ',' + nim1 + ',' + osoit1 + ',' + kunt1 + ',' + webosoit1 + ')" title="Muokkaa"><span id="edit" class="ui-icon ui-icon-pencil"></span></a></div></div>';
 	bubble = infoBubbles.openBubble(htmlStr, coord, "", false);  
 };
