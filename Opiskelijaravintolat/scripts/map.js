@@ -493,6 +493,7 @@ function getMenu(rss, www) {
       url: "index.php/site/getmenu?wday=" + weekday + "&rss=" + rss + "&wwwa=" + www,
       success: function(response, status){
             $("#menuDialog").dialog();
+            $("#menuDialog").dialog("option", "position", { my: "center top", at: "center top", of: "#content", collision: "flipfit", within: "#content"});
             $("#menuDialog").html(response);
           },
       error: function error(jqXHR, textStatus, errorThrown) {

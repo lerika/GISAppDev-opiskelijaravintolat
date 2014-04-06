@@ -1,6 +1,6 @@
 ﻿-- Table: ravintolat
 
-DROP TABLE ravintolat;
+-- DROP TABLE ravintolat;
 
 -- Jos et ole vielä tehnyt:
 -- CREATE EXTENSION postgis;
@@ -36,3 +36,13 @@ CREATE TABLE "Ehdotukset"
 WITH (
   OIDS=FALSE
 );
+
+-- Index: ravintolat_gix
+
+-- DROP INDEX ravintolat_gix;
+
+CREATE INDEX ravintolat_gix
+  ON ravintolat
+  USING gist
+  (geometria);
+
