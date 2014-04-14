@@ -495,7 +495,9 @@ function editRestaurant(id1,nimi1,osoite1,kunta1,www1) {
     $('#EditForm_muutos_nimi').val(nimi1);
     $("#EditForm_muutos_osoite").val(osoite1);
     $("#EditForm_muutos_kunta").val(kunta1);
-    $("#EditForm_muutos_www").val(www1);
+    if (!(www1.toLowerCase() == 'null')) { 
+        $("#EditForm_muutos_www").val(www1);
+    }
    
 }
 
