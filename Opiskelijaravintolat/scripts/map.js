@@ -6,6 +6,7 @@ var Location = new nokia.maps.geo.Coordinate(60.1808, 24.9375);
 var userLocation = new nokia.maps.geo.Coordinate(60.1808, 24.9375);
 var envelope = [24.6375, 59.8810];
 var reitin_pituus;
+var bubble_version = 0;
 
 //käyttäjän antaman paikan koordinaatit
 var coordinates = [];
@@ -109,7 +110,7 @@ var onRouteCalculated = function (observedRouter, key, value) {
 			//otetaan talteen reitin pituus sadan metrin tarkkuudella
 			reitin_pituus = routes[0].summary.distance;
 			reitin_pituus = Math.round(reitin_pituus/100)*100;
-            
+			
             var id1 = lahin[indeksi].id;
             getInfo(id1);
             
@@ -140,7 +141,7 @@ function addMarkerToMap(x, y, id)
 		var ravintolamarker = new nokia.maps.map.Marker(
 			[y,x],
 			{
-				$click : 'getInfo_for_click_event(myValue);',
+				$click : 'clicking_the_marker(myValue);',
 				icon: "images/1393904341_97_pisara_proj_6_pien.png",
 				anchor: new nokia.maps.util.Point(14, 36)
 			}
@@ -159,6 +160,14 @@ function addMarkerToMap(x, y, id)
 		
 			map.objects.add(ravintolamarker);
 };
+
+function clicking_the_marker(val)
+{
+	if (bubble_version == 0) {
+		bubble_version = 1;
+	}
+	getInfo(val);
+};	
 
 //Markkereiden luonti -funktio
 function markers()
@@ -182,6 +191,9 @@ var indeksi = 0;
 function button() //etsii lähimmän ravintolan
 {
 	infoBubbles.closeAll();
+	if (bubble_version == 1) {
+		bubble_version = 0;
+	}
 	if(SijaintiMarker) {
 		map.objects.remove(SijaintiMarker);
 	}				
@@ -233,11 +245,13 @@ function button() //etsii lähimmän ravintolan
     } else {
         alert("Ei ravintoloita lähimailla. :(");
     }
-	
 };
 
 function button2() //etsii seuraavaksi lähimmän ravintolan
 {
+	if (bubble_version == 1) {
+		bubble_version = 0;
+	}
 	var startpoint;
 	//tarkistetaan käytetäänkö geolocation vai käyttäjän antamaa sijaintia
 	if (document.getElementById("searchbox-input").value=="")
@@ -268,7 +282,6 @@ function button2() //etsii seuraavaksi lähimmän ravintolan
     waypoints.addCoordinate(startpoint);
     waypoints.addCoordinate(new nokia.maps.geo.Coordinate(y,x));
     router.calculateRoute(waypoints, modes);
-    
     
 };
 
@@ -407,48 +420,13 @@ function infobubbles(id1, nim, osoit, kunt, webosoit, rss, x_bub, y_bub)
         var osoit1 = "'" + osoit + "'";
         var kunt1 = "'" + kunt + "'";
         var webosoit1 = "'" + webosoit + "'";
-		htmlStr += '<p>' + "Etäisyys ravintolaan n. " + reitin_pituus  + " m." + '</p>';
+		if (bubble_version == 0) {
+			htmlStr += '<p>' + "Etäisyys ravintolaan n. " + reitin_pituus  + " m." + '</p>';
+		}
         htmlStr += '<div><a href="javascript:void(0)" onClick="editRestaurant(' + id1 + ',' + nim1 + ',' + osoit1 + ',' + kunt1 + ',' + webosoit1 + ')" title="Muokkaa"><span id="edit" class="ui-icon ui-icon-pencil"></span></a></div></div>';
 	bubble = infoBubbles.openBubble(htmlStr, coord, "", false);  
 };
 
-//infobubblen luonti -funktio click eventeille
-function infobubbles_for_click_event(id1, nim, osoit, kunt, webosoit, rss, x_bub, y_bub)
-{
-    var x = parseFloat(x_bub)
-	var y = parseFloat(y_bub)
-	var coord = new nokia.maps.geo.Coordinate (y, x);
-	var linkki;
-    if (rss == 1 || rss == 2) {
-        var w = "'" + webosoit + "'"
-        linkki = '"javascript:void(0)" onClick="getMenu('+ rss + ', ' + w + ')"';
-    } else {
-        linkki = '"' + webosoit + '" target="_blank"';
-    }
-	var bubbleUiElt = document.getElementById("bubble");
-	htmlBubbleUiElt = document.getElementById("htmlBubble");
-	htmlStr = '<div>' +
-		'<p>' +
-		'<h2>' +
-		nim +
-		'<br />' +
-		'</h2>' +
-		osoit +
-		' ' +
-		kunt + 
-		'</p>';
-        if (rss == 0) {
-            htmlStr += '<p><a href=' + linkki + '>' + 'RUOKALISTA <br/>&gt; ravintolan sivuille</a></p>';
-        } else if (!(rss == 3)) {
-            htmlStr += '<p><a href=' + linkki + '>' + 'RUOKALISTA</a></p>';
-        }
-        var nim1 = "'" + nim + "'";
-        var osoit1 = "'" + osoit + "'";
-        var kunt1 = "'" + kunt + "'";
-        var webosoit1 = "'" + webosoit + "'";
-        htmlStr += '<div><a href="javascript:void(0)" onClick="editRestaurant(' + id1 + ',' + nim1 + ',' + osoit1 + ',' + kunt1 + ',' + webosoit1 + ')" title="Muokkaa"><span id="edit" class="ui-icon ui-icon-pencil"></span></a></div></div>';
-	bubble = infoBubbles.openBubble(htmlStr, coord, "", false);  
-};
     
 function getInfo(id1) {
 // fetches restaurants name, address and website from the database
@@ -458,22 +436,6 @@ function getInfo(id1) {
       dataType: "json",
       success: function(response, status){
            infobubbles(id1, response["nimi"], response["osoite"], response["kunta"], response["webosoite"], response["rss"], response["xkoord"], response["ykoord"]);	
-      },
-      error: function error(jqXHR, textStatus, errorThrown) {
-            alert("Ravintolan tietojen haku epäonnistui.");
-      }
-    });
-
-}
-
-function getInfo_for_click_event(id1) {
-// fetches restaurants name, address and website from the database
-    $.ajax({
-      url: "index.php/site/getdata/" + id1,
-      contentType: "application/json; charset=utf-8",
-      dataType: "json",
-      success: function(response, status){
-           infobubbles_for_click_event(id1, response["nimi"], response["osoite"], response["kunta"], response["webosoite"], response["rss"], response["xkoord"], response["ykoord"]);	
       },
       error: function error(jqXHR, textStatus, errorThrown) {
             alert("Ravintolan tietojen haku epäonnistui.");
